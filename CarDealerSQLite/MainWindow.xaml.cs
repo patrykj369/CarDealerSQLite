@@ -24,5 +24,10 @@ namespace CarDealerSQLite
         {
             InitializeComponent();
         }
+
+        private void categoryDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

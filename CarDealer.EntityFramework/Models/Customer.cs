@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CarDealer.EntityFramework.Models
 {
-    class Customer
+    public class Customer
     {
         public int Id { get; set; }
 

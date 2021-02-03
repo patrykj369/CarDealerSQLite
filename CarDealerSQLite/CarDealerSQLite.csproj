@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CarDealer.EntityFramework\CarDealer.EntityFramework.csproj" />
+  </ItemGroup>
+
 </Project>

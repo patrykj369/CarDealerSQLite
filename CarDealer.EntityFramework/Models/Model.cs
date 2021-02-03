@@ -4,12 +4,12 @@ using System.Text;
 
 namespace CarDealer.EntityFramework.Models
 {
-    class Model
+    public class Model
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
     }
 }

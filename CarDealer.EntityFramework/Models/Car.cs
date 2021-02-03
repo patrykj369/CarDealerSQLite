@@ -4,15 +4,15 @@ using System.Text;
 
 namespace CarDealer.EntityFramework.Models
 {
-    class Car
+    public class Car
     {
         public int Id { get; set; }
 
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
 
-        public Model Model { get; set; }
+        public virtual Model Model { get; set; }
 
-        public Customer BookingUser { get; set; }
+        public virtual Customer BookingUser { get; set; }
 
         public DateTime ProductionYear { get; set; }
 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CarDealer.EntityFramework.Services;
 
 namespace CarDealerSQLite
 {
@@ -13,5 +14,15 @@ namespace CarDealerSQLite
     /// </summary>
     public partial class App : Application
     {
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            using (var dbContext = new CarDealerContext())
+            {
+                dbContext.Database.EnsureCreated();
+            }
+        }
     }
 }
