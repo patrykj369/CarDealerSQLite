@@ -27,7 +27,8 @@ namespace CarDealer.EntityFramework.Services
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().HasData(GetCustomer());
-
+            modelBuilder.Entity<Brand>().HasData(GetBrand());
+            modelBuilder.Entity<Model>().HasData(GetModel());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -40,6 +41,23 @@ namespace CarDealer.EntityFramework.Services
             };
         }
 
+        private Brand[] GetBrand()
+        {
+            return new Brand[]
+            {
+                new Brand {Id = 1, Name = "Mercedes"},
+                new Brand {Id = 2, Name = "Renault"},
+            };
+        }
+
+        private Model[] GetModel()
+        {
+            return new Model[]
+            {
+                new Model {Id = 1, Name = "S-Class"},
+                new Model {Id = 2, Name = "Megane"},
+            };
+        }
 
     }
 }

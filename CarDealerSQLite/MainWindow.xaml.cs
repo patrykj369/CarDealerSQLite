@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
+using CarDealer.EntityFramework.Models;
 
 namespace CarDealerSQLite
 {
@@ -27,12 +29,24 @@ namespace CarDealerSQLite
         {
             this.dbContext = dbContext;
             InitializeComponent();
-            GetProducts();
+            GetCustomers();
+            GetBrand();
+            GetModel();
         }
 
-        private void GetProducts()
+        private void GetCustomers()
         {
             Customer.ItemsSource = dbContext.Customers.ToList();
+        }
+
+        private void GetBrand()
+        {
+            Brand.ItemsSource = dbContext.Brands.ToList();
+        }
+
+        private void GetModel()
+        {
+            
         }
     }
 }

@@ -10,6 +10,6 @@ namespace CarDealer.EntityFramework.Models
 
         public string Name { get; set; }
 
-        public virtual Brand Brand { get; set; }
+        public virtual ICollection<Brand> Brand { get; set; }
     }
 }
