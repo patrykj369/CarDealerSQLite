@@ -8,6 +8,12 @@ namespace CarDealer.EntityFramework.Services
 {
     public class CarDealerContext : DbContext
     {
+
+        public CarDealerContext(DbContextOptions<CarDealerContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
+
         public DbSet<Car> Cars { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -16,13 +22,7 @@ namespace CarDealer.EntityFramework.Services
 
         public DbSet<Model> Models { get; set; }
 
-        public DbSet<Brand> Brands {get;set;}
-
-        public CarDealerContext(DbContextOptions<CarDealerContext> options) : base(options)
-        {
-            Database.EnsureCreated();
-        }
-        
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,10 +35,11 @@ namespace CarDealer.EntityFramework.Services
         {
             return new Customer[]
             {
-                new Customer {Id = 1, Name = "Patryk", Surname = "Jablonski", Email ="patrykjablonski23@gmail.com", City="Mecina", PhoneNumber= 694926314, PostNumberr="34654" },
-                new Customer {Id = 2, Name = "Marcin", Surname = "Najman", Email ="marcin.najman@gmail.com", City="Czestochowa", PhoneNumber= 666555444, PostNumberr="30333" }
+                new Customer {Id = 1, Name = "Patryk", Surname = "Jablonski", Email ="patrykjablonski23@gmail.com", City="Mecina", PhoneNumber= 694926314, PostNumberr="34-654" },
+                new Customer {Id = 2, Name = "Marcin", Surname = "Najman", Email ="marcin.najman@gmail.com", City="Czestochowa", PhoneNumber= 666555444, PostNumberr="30-333" },
             };
         }
+
 
     }
 }

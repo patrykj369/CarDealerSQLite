@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using CarDealer.EntityFramework.Services;
+﻿using CarDealer.EntityFramework.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
 
 namespace CarDealerSQLite
 {
@@ -36,5 +30,7 @@ namespace CarDealerSQLite
             var mainWindow = serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
         }
+
+
     }
 }

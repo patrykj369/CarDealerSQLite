@@ -4,16 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <CollectionViewSource x:Key="categoryViewSource"/>
-        <CollectionViewSource x:Key="categoryProductsViewSource"
-                              Source="{Binding Brand, Source={StaticResource categoryViewSource}}"/>
-    </Window.Resources>
+        mc:Ignorable="d" Background="Azure"
+        Title="MainWindow" Height="600" Width="950">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
 
-
-
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" Margin="5" Name="Customer" IsReadOnly="True">
+        <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                <DataGridTextColumn Header="Post number" Binding="{Binding PostNumberr}"/>
+                <DataGridTextColumn Header="Address email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </Window>
     
     

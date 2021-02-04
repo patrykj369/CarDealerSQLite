@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarDealer.EntityFramework.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,18 @@ namespace CarDealerSQLite
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        CarDealerContext dbContext;
+
+        public MainWindow(CarDealerContext dbContext)
         {
+            this.dbContext = dbContext;
             InitializeComponent();
+            GetProducts();
         }
 
-        private void categoryDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void GetProducts()
         {
-
+            Customer.ItemsSource = dbContext.Customers.ToList();
         }
     }
 }
