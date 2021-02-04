@@ -18,13 +18,27 @@ namespace CarDealer.EntityFramework.Services
 
         public DbSet<Brand> Brands {get;set;}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CarDealerContext(DbContextOptions<CarDealerContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite($"Filename=CarDealer.db");
-
-            optionsBuilder.UseLazyLoadingProxies();
-
-            base.OnConfiguring(optionsBuilder);
+            Database.EnsureCreated();
         }
+        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().HasData(GetCustomer());
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private Customer[] GetCustomer()
+        {
+            return new Customer[]
+            {
+                new Customer {Id = 1, Name = "Patryk", Surname = "Jablonski", Email ="patrykjablonski23@gmail.com", City="Mecina", PhoneNumber= 694926314, PostNumberr="34654" },
+                new Customer {Id = 2, Name = "Marcin", Surname = "Najman", Email ="marcin.najman@gmail.com", City="Czestochowa", PhoneNumber= 666555444, PostNumberr="30333" }
+            };
+        }
+
     }
 }

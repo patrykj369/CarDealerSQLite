@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using CarDealer.EntityFramework.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CarDealerSQLite
 {
@@ -14,15 +16,25 @@ namespace CarDealerSQLite
     /// </summary>
     public partial class App : Application
     {
+        private ServiceProvider serviceProvider;
 
-        protected override void OnStartup(StartupEventArgs e)
+        public App()
         {
-            base.OnStartup(e);
-
-            using (var dbContext = new CarDealerContext())
+            ServiceCollection services = new ServiceCollection();
+            services.AddDbContext<CarDealerContext>(option =>
             {
-                dbContext.Database.EnsureCreated();
-            }
+                option.UseSqlite("Data Source = CarDealerSQLite.db");
+            });
+
+            services.AddSingleton<MainWindow>();
+
+            serviceProvider = services.BuildServiceProvider();
+        }
+
+        private void OnStartup(object s, StartupEventArgs e)
+        {
+            var mainWindow = serviceProvider.GetService<MainWindow>();
+            mainWindow.Show();
         }
     }
 }
