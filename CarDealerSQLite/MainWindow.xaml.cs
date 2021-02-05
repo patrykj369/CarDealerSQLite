@@ -32,6 +32,7 @@ namespace CarDealerSQLite
             GetCustomers();
             GetBrand();
             GetModel();
+            GetCar();
         }
 
         private void GetCustomers()
@@ -54,6 +55,16 @@ namespace CarDealerSQLite
                     BrandId = model.BrandID,
                     Brand = model.Brand,
                 }).ToList();
+        }
+
+        private void GetCar()
+        {
+            Car.ItemsSource = dbContext.Cars.ToList();
+        }
+
+        private void Label_AccessKeyPressed(object sender, AccessKeyPressedEventArgs e)
+        {
+
         }
     }
 }

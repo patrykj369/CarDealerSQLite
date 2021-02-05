@@ -31,7 +31,7 @@ namespace CarDealer.EntityFramework.Services
             modelBuilder.Entity<Customer>().HasData(GetCustomer());
             modelBuilder.Entity<Brand>().HasData(GetBrand());
             modelBuilder.Entity<Model>().HasOne(b => b.Brand);
-
+            modelBuilder.Entity<Car>();
             base.OnModelCreating(modelBuilder);
         }
 
@@ -53,14 +53,23 @@ namespace CarDealer.EntityFramework.Services
             };
         }
 
-        private Model[] GetModel()
+        /*private Car[] GetCar()
+        {
+            return new Car[]
+            {
+                new Car {Id = 1, BrandID = 1, ModelID = 1, BookingUserID = 1, ProductionYear = new DateTime(2011), Course = 240000, Capacity = 4.2, RegistrationNumber = "KNS31425", Price= 32000, Booking = false },
+               
+            };
+        }*/
+
+        /*private Model[] GetModel()
         {
             return new Model[]
             {
                 new Model {Id = 1, Name = "S-Class"},
                 new Model {Id = 2, Name = "Megane" },
             };
-        }
+        }*/
 
     }
 }
