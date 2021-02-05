@@ -25,6 +25,8 @@ namespace CarDealerSQLite
     {
         CarDealerContext dbContext;
 
+        Customer newCustomer = new Customer();
+
         public MainWindow(CarDealerContext dbContext)
         {
             this.dbContext = dbContext;
@@ -33,6 +35,10 @@ namespace CarDealerSQLite
             GetBrand();
             GetModel();
             GetCar();
+
+            //----------------------------------------------------------------------//
+
+            AddNewItemGrid.DataContext = newCustomer;
         }
 
         private void GetCustomers()
@@ -62,7 +68,20 @@ namespace CarDealerSQLite
             Car.ItemsSource = dbContext.Cars.ToList();
         }
 
+        private void AddItem(object s, RoutedEventArgs e)
+        {
+            dbContext.Customers.Add(newCustomer);
+            dbContext.SaveChanges();
+            GetCustomers();
+            newCustomer = new Customer();
+        }
+
         private void Label_AccessKeyPressed(object sender, AccessKeyPressedEventArgs e)
+        {
+
+        }
+
+        private void Customer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
