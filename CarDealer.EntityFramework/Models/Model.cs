@@ -11,6 +11,7 @@ namespace CarDealer.EntityFramework.Models
         public string Name { get; set; }
 
         public int BrandID { get; set; }
+
         public virtual Brand Brand { get; set; }
     }
 }

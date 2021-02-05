@@ -8,10 +8,12 @@ namespace CarDealer.EntityFramework.Services
 {
     public class CarDealerContext : DbContext
     {
-
+        
         public CarDealerContext(DbContextOptions<CarDealerContext> options) : base(options)
         {
+            
             Database.EnsureCreated();
+           
         }
 
         public DbSet<Car> Cars { get; set; }
@@ -28,7 +30,8 @@ namespace CarDealer.EntityFramework.Services
         {
             modelBuilder.Entity<Customer>().HasData(GetCustomer());
             modelBuilder.Entity<Brand>().HasData(GetBrand());
-            modelBuilder.Entity<Model>().HasData(GetModel());
+            modelBuilder.Entity<Model>().HasOne(b => b.Brand);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -55,7 +58,7 @@ namespace CarDealer.EntityFramework.Services
             return new Model[]
             {
                 new Model {Id = 1, Name = "S-Class"},
-                new Model {Id = 2, Name = "Megane"},
+                new Model {Id = 2, Name = "Megane" },
             };
         }
 

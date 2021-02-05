@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
-
+using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace CarDealerSQLite
 {
     /// <summary>
@@ -18,6 +18,7 @@ namespace CarDealerSQLite
             services.AddDbContext<CarDealerContext>(option =>
             {
                 option.UseSqlite("Data Source = CarDealerSQLite.db");
+                //optionsBuilder.UseSqlite("$Filename = {baziora.db}", x => x.SuppressForeignKeyEnforcement());
             });
 
             services.AddSingleton<MainWindow>();
