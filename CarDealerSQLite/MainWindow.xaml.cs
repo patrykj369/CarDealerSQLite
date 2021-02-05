@@ -46,7 +46,14 @@ namespace CarDealerSQLite
 
         private void GetModel()
         {
-            
+            Model.ItemsSource = dbContext.Models
+                .Select(model => new
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    BrandId = model.BrandID,
+                    Brand = model.Brand,
+                }).ToList();
         }
     }
 }
