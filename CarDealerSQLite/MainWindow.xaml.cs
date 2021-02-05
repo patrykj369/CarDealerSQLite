@@ -74,6 +74,13 @@ namespace CarDealerSQLite
             dbContext.SaveChanges();
             GetCustomers();
             newCustomer = new Customer();
+            name.Clear();
+            surname.Clear();
+            city.Clear();
+            post.Clear();
+            mail.Clear();
+            phone.Clear();
+
         }
 
         private void Label_AccessKeyPressed(object sender, AccessKeyPressedEventArgs e)
