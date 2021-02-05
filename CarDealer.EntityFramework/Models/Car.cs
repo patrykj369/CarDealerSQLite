@@ -8,12 +8,18 @@ namespace CarDealer.EntityFramework.Models
     {
         public int Id { get; set; }
 
-        public virtual ICollection<Brand> Brand { get; set; }
+        public int BrandID { get; set; }
 
-        public virtual ICollection<Model> Model { get; set; }
+        public virtual Brand Brand { get; set; }
 
-        public virtual ICollection<Customer> BookingUser { get; set; }
+        public int ModelID { get; set; }
 
+        public virtual Model Model { get; set; }
+
+        public int BookingUserID { get; set; }
+
+        public virtual Customer BookingUser { get; set; }
+  
         public DateTime ProductionYear { get; set; }
 
         public int Course { get; set; } //przebieg
