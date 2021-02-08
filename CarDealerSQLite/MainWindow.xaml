@@ -5,14 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="MainWindow" Height="800" Width="950">
+        Title="MainWindow" MinHeight="800" Width="950">
 
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
-            
         </Grid.RowDefinitions>
 
 
@@ -82,10 +81,10 @@
 
                                     <Label Grid.Row="6" Grid.Column="0" Content="E-mail"/>
                                     <TextBox x:Name="mail" Grid.Row="6" Grid.Column="1" Text="{Binding Email}"/>
-                                    
+
                                     <Label Grid.Row="7" Grid.Column="0" Content="Phone number"/>
                                     <TextBox x:Name="phone" Grid.Row="7" Grid.Column="1" Text="{Binding PhoneNumber}"/>
-                                    
+
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
                                     <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
@@ -96,106 +95,107 @@
                     </Grid>
                 </Grid>
             </TabItem>
-       
-                <TabItem Header="Car">
+
+            <TabItem Header="Car">
                 <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Car" IsReadOnly="True">
-                    <DataGrid.Columns >
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="BrandID" Binding="{Binding BrandID}"/>
-                        <DataGridTextColumn Header="ModelID" Binding="{Binding ModelID}"/>
-                        <DataGridTextColumn Header="BookingUserID" Binding="{Binding BookingUserID}"/>
-                        <DataGridTextColumn Header="Production year" Binding="{Binding ProductionYear}"/>
-                        <DataGridTextColumn Header="Course" Binding="{Binding Course}"/>
-                        <DataGridTextColumn Header="Capacity" Binding="{Binding Capacity}"/>
-                        <DataGridTextColumn Header="Registration number" Binding="{Binding RegistrationNumber}"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
-                        <DataGridTextColumn Header="Booking" Binding="{Binding Booking}"/>
-                        <DataGridTextColumn Header="Image" Binding="{Binding Image}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                    
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Car" IsReadOnly="True">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="BrandID" Binding="{Binding BrandID}"/>
+                            <DataGridTextColumn Header="ModelID" Binding="{Binding ModelID}"/>
+                            <DataGridTextColumn Header="BookingUserID" Binding="{Binding BookingUserID}"/>
+                            <DataGridTextColumn Header="Production year" Binding="{Binding ProductionYear}"/>
+                            <DataGridTextColumn Header="Course" Binding="{Binding Course}"/>
+                            <DataGridTextColumn Header="Capacity" Binding="{Binding Capacity}"/>
+                            <DataGridTextColumn Header="Registration number" Binding="{Binding RegistrationNumber}"/>
+                            <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Booking" Binding="{Binding Booking}"/>
+                            <DataGridTextColumn Header="Image" Binding="{Binding Image}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
-                        <StackPanel Margin="5">
-                            <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                            <Grid Margin="5" x:Name="AddNewCarGrid">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
+                                <Grid Margin="5" x:Name="AddNewCarGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
                                     </Grid.RowDefinitions>
 
-                                <Label Grid.Row="0" Grid.Column="0" Content="Brand ID"/>
-                                <TextBox x:Name="BrandID" Grid.Row="0" Grid.Column="1" Text="{Binding BrandID}"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Brand ID" />
+                                    <TextBox x:Name="BrandID" Grid.Row="0" Grid.Column="2" Text="{Binding BrandID}"/>
 
-                                <Label Grid.Row="1" Grid.Column="0" Content="Model ID"/>
-                                <TextBox x:Name="ModelID" Grid.Row="1" Grid.Column="1" Text="{Binding ModelID}"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Model ID" />
+                                    <TextBox x:Name="ModelID" Grid.Row="1" Grid.Column="2" Text="{Binding ModelID}"/>
 
-                                <Label Grid.Row="2" Grid.Column="0" Content="Booking User ID"/>
-                                <TextBox x:Name="BookingUserID" Grid.Row="2" Grid.Column="1" Text="{Binding BookingUserID}"/>
+                                    <Label Grid.Row="2" Grid.Column="0" Content="Booking User ID" />
+                                    <TextBox x:Name="BookingUserID" Grid.Row="2" Grid.Column="2" Text="{Binding BookingUserID}"/>
 
-                                 <Label Grid.Row="3" Grid.Column="0" Content="Production Year"/>
-                                 <TextBox x:Name="ProductionYear" Grid.Row="3" Grid.Column="1" Text="{Binding ProductionYear}"/>
+                                    <Label Grid.Row="3" Grid.Column="0" Content="Production Year" />
+                                    <TextBox x:Name="ProductionYear" Grid.Row="3" Grid.Column="2" Text="{Binding ProductionYear}"/>
 
-                                <Label Grid.Row="4" Grid.Column="0" Content="Course"/>
-                                <TextBox x:Name="Course" Grid.Row="4" Grid.Column="1" Text="{Binding Course}"/>
+                                    <Label Grid.Row="4" Grid.Column="0" Content="Course" Grid.ColumnSpan="2" />
+                                    <TextBox x:Name="Course" Grid.Row="4" Grid.Column="2" Text="{Binding Course}"/>
 
-                                <Label Grid.Row="5" Grid.Column="0" Content="Capacity"/>
-                                <TextBox x:Name="Capacity" Grid.Row="5" Grid.Column="1" Text="{Binding Capacity}"/>
+                                    <Label Grid.Row="5" Grid.Column="0" Content="Capacity" />
+                                    <TextBox x:Name="Capacity" Grid.Row="5" Grid.Column="2" Text="{Binding Capacity}"/>
 
-                                <Label Grid.Row="6" Grid.Column="0" Content="Registration number"/>
-                                <TextBox x:Name="RegistrationNumber" Grid.Row="6" Grid.Column="1" Text="{Binding RegistrationNumber}"/>
+                                    <Label Grid.Row="6" Grid.Column="0" Content="Registration number" />
+                                    <TextBox x:Name="RegistrationNumber" Grid.Row="6" Grid.Column="2" Text="{Binding RegistrationNumber}"/>
 
-                                <Label Grid.Row="7" Grid.Column="0" Content="Price"/>
-                                <TextBox x:Name="Price" Grid.Row="7" Grid.Column="1" Text="{Binding Price}"/>
+                                    <Label Grid.Row="7" Grid.Column="0" Content="Price" />
+                                    <TextBox x:Name="Price" Grid.Row="7" Grid.Column="2" Text="{Binding Price}"/>
 
-                                <Label Grid.Row="8" Grid.Column="0" Content="Booked"/>
-                                    <CheckBox x:Name="Prrice" Grid.Row="8" Grid.Column="1" Content="Yes/No" IsThreeState="True"/>
-                                
-                                <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                                    <Label Grid.Row="8" Grid.Column="0" Content="Booked" />
+                                    <CheckBox x:Name="Prrice" Grid.Row="8" Grid.Column="2" Content="Yes/No" IsThreeState="True"/>
 
-                            </Grid>
-                        </StackPanel>
-                    </Border>
-                </Grid>
+                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="3" Click="AddItem"/>
+
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </Grid>
             </TabItem>
-    
-    <TabItem Header="Brand" VerticalAlignment="Top">
+
+            <TabItem Header="Brand" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Brand" IsReadOnly="True">
-                    <DataGrid.Columns >
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -243,24 +243,78 @@
                         </Border>
                     </Grid>
                 </Grid>
-                
+
             </TabItem>
-        
+
             <TabItem Header="Model" >
-                <DataGrid Grid.Row="1" AutoGenerateColumns="False" Margin="5" Name="Model" IsReadOnly="True">
-                    <DataGrid.Columns >
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="BrandID" Binding="{Binding BrandId}"/>
-                        <DataGridTextColumn Header="Brand" Binding="{Binding Brand}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Model" IsReadOnly="True">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="BrandID" Binding="{Binding BrandId}"/>
+                            <DataGridTextColumn Header="Brand" Binding="{Binding Brand}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                            <StackPanel Margin="5">
+                                <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                <Grid Margin="5" x:Name="AddNewModelGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Content=""/>
+
+
+                                    <Label Grid.Row="1" Grid.Column="0" Content=""/>
+                                    <Label Grid.Row="2" Grid.Column="0" Content=""/>
+                                    <Label Grid.Row="3" Grid.Column="0" Content="Name"/>
+                                    <TextBox x:Name="NameModel" Grid.Row="3" Grid.Column="1" Text="{Binding Name}"/>
+                                    <Label Grid.Row="4" Grid.Column="0" Content="Brand ID"/>
+                                    <TextBox x:Name="BrandId" Grid.Row="4" Grid.Column="1" Text="{Binding BrandID}"/>
+                                    <Label Grid.Row="5" Grid.Column="0" Content="Brand"/>
+                                    <TextBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" Text="{Binding Brand}"/>
+                                    <Label Grid.Row="6" Grid.Column="0" Content=""/>
+                                    <Label Grid.Row="7" Grid.Column="0" Content=""/>
+                                    <Label Grid.Row="8" Grid.Column="0" Content=""/>
+
+                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
             </TabItem>
         </TabControl>
 
-        
-            
-        
+
+
+
     </Grid>
 </Window>
     
