@@ -68,19 +68,18 @@ namespace CarDealerSQLite
             Car.ItemsSource = dbContext.Cars.ToList();
         }
 
+        private void ReloadForm()
+        {
+            //dodać czyszczenie formularza
+        }
+
         private void AddItem(object s, RoutedEventArgs e)
         {
             dbContext.Customers.Add(newCustomer);
             dbContext.SaveChanges();
             GetCustomers();
             newCustomer = new Customer();
-            name.Clear();
-            surname.Clear();
-            city.Clear();
-            post.Clear();
-            mail.Clear();
-            phone.Clear();
-
+            
         }
 
         //Customer selectedCustomer = new Customer();
