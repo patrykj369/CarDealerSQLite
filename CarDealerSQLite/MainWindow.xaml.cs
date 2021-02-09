@@ -83,14 +83,14 @@ namespace CarDealerSQLite
 
         }
 
-        private void Label_AccessKeyPressed(object sender, AccessKeyPressedEventArgs e)
+        //Customer selectedCustomer = new Customer();
+
+        private void DeleteCustomer(object s, RoutedEventArgs e)
         {
-
-        }
-
-        private void Customer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
+            dbContext.Customers.Remove(customerToBeDelated);
+            dbContext.SaveChanges();
+            GetCustomers();
         }
     }
 }

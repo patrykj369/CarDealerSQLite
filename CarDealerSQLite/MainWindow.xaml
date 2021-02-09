@@ -25,7 +25,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Customer" IsReadOnly="True" SelectionChanged="Customer_SelectionChanged">
+                    <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Customer" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
@@ -34,7 +34,16 @@
                             <DataGridTextColumn Header="Post number" Binding="{Binding PostNumberr}"/>
                             <DataGridTextColumn Header="Address email" Binding="{Binding Email}"/>
                             <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}"/>
+
+                            <DataGridTemplateColumn Header="Delete Customer">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="DELETE" Click="DeleteCustomer"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
+                        
                     </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
