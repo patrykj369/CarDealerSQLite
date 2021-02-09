@@ -1,0 +1,77 @@
+﻿<Window x:Class="CarDealerSQLite.WindowUpdateCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarDealerSQLite"
+        mc:Ignorable="d" Background="Azure"
+        Title="WindowUpdateCustomer" MinHeight="400" Width="600">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                    <StackPanel Margin="5">
+                        <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <Grid Margin="5" x:Name="AddNewModelGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Content=""/>
+
+
+                            <Label Grid.Row="1" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="2" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="Name"/>
+                            <TextBox x:Name="NameModel" Grid.Row="3" Grid.Column="1" Text="{Binding Name}"/>
+                            <Label Grid.Row="4" Grid.Column="0" Content="Brand ID"/>
+                            <TextBox x:Name="BrandId" Grid.Row="4" Grid.Column="1" Text="{Binding BrandID}"/>
+                            <Label Grid.Row="5" Grid.Column="0" Content="Brand"/>
+                            <TextBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" Text="{Binding Brand}"/>
+                            <Label Grid.Row="6" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="7" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="8" Grid.Column="0" Content=""/>
+
+                            <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
+    
+    

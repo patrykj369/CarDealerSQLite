@@ -84,18 +84,50 @@ namespace CarDealerSQLite
         }
 
         //Customer selectedCustomer = new Customer();
+        
 
         private void DeleteCustomer(object s, RoutedEventArgs e)
         {
-            var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
-            dbContext.Customers.Remove(customerToBeDelated);
-            string messageBoxText = "Deleted succesfully: \n" + "ID: " + customerToBeDelated.Id +"; Name: "+ customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
-            string caption = "Deleted succesfully!";
-            MessageBoxImage icon = MessageBoxImage.Information;
-            MessageBoxButton button = MessageBoxButton.OK;
-            MessageBox.Show(messageBoxText, caption, button, icon);
-            dbContext.SaveChanges();
-            GetCustomers();
+
+            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
+            string captionWarning = "Usuwanie";
+            MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
+            MessageBoxImage iconWarning = MessageBoxImage.Warning;
+            MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
+
+
+            if(result == MessageBoxResult.Yes)
+            {
+                //Usuwanie z bazy
+                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
+                dbContext.Customers.Remove(customerToBeDelated);
+                dbContext.SaveChanges();
+
+                //wiadomosc wyswietlana na ekranie
+                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string caption = "Usuwanie";
+                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                GetCustomers();
+            }
+            else
+            {
+                string messageInfo = "Usuwanie anulowane!";
+                string captionInfo = "Usuwanie";
+                MessageBoxButton buttonInfo = MessageBoxButton.OK;
+                MessageBoxImage iconInfo = MessageBoxImage.Warning;
+                MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
+
+            }
         }
+
+
+        private void UpdateCustomer(object s, RoutedEventArgs e)
+        {
+            WindowUpdateCustomer updateWindow = new WindowUpdateCustomer();
+            updateWindow.Show();
+        }
+
     }
 }

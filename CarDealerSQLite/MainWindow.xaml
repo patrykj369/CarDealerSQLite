@@ -14,9 +14,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-
         <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
-
 
         <TabControl TabStripPlacement="Top" Grid.Row="1">
             <TabItem Header="Customer">
@@ -42,8 +40,17 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                        </DataGrid.Columns>
                         
+
+                        <DataGridTemplateColumn Header="Update Customer">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="UPDATE" Click="UpdateCustomer"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+
                     </DataGrid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
