@@ -89,6 +89,11 @@ namespace CarDealerSQLite
         {
             var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
             dbContext.Customers.Remove(customerToBeDelated);
+            string messageBoxText = "Deleted succesfully: \n" + "ID: " + customerToBeDelated.Id +"; Name: "+ customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+            string caption = "Deleted succesfully!";
+            MessageBoxImage icon = MessageBoxImage.Information;
+            MessageBoxButton button = MessageBoxButton.OK;
+            MessageBox.Show(messageBoxText, caption, button, icon);
             dbContext.SaveChanges();
             GetCustomers();
         }
