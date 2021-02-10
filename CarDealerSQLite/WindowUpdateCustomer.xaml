@@ -28,9 +28,9 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
                     <StackPanel Margin="5">
-                        <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Content="Update:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                        <Grid Margin="5" x:Name="AddNewModelGrid">
+                        <Grid Margin="5" x:Name="UpdateCustomerGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -51,21 +51,29 @@
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Content=""/>
-
-
                             <Label Grid.Row="1" Grid.Column="0" Content=""/>
-                            <Label Grid.Row="2" Grid.Column="0" Content=""/>
-                            <Label Grid.Row="3" Grid.Column="0" Content="Name"/>
-                            <TextBox x:Name="NameModel" Grid.Row="3" Grid.Column="1" Text="{Binding Name}"/>
-                            <Label Grid.Row="4" Grid.Column="0" Content="Brand ID"/>
-                            <TextBox x:Name="BrandId" Grid.Row="4" Grid.Column="1" Text="{Binding BrandID}"/>
-                            <Label Grid.Row="5" Grid.Column="0" Content="Brand"/>
-                            <TextBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" Text="{Binding Brand}"/>
-                            <Label Grid.Row="6" Grid.Column="0" Content=""/>
-                            <Label Grid.Row="7" Grid.Column="0" Content=""/>
+
+                            <Label Grid.Row="2" Grid.Column="0" Content="Name"/>
+                            <TextBox x:Name="name" Grid.Row="2" Grid.Column="1" Text="{Binding Name}"/>
+
+                            <Label Grid.Row="3" Grid.Column="0" Content="Surname"/>
+                            <TextBox x:Name="surname" Grid.Row="3" Grid.Column="1" Text="{Binding Surname}"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Content="City"/>
+                            <TextBox x:Name="city" Grid.Row="4" Grid.Column="1" Text="{Binding City}"/>
+
+                            <Label Grid.Row="5" Grid.Column="0" Content="Post number"/>
+                            <TextBox x:Name="post" Grid.Row="5" Grid.Column="1" Text="{Binding PostNumberr}"/>
+
+                            <Label Grid.Row="6" Grid.Column="0" Content="E-mail"/>
+                            <TextBox x:Name="mail" Grid.Row="6" Grid.Column="1" Text="{Binding Email}"/>
+
+                            <Label Grid.Row="7" Grid.Column="0" Content="Phone number"/>
+                            <TextBox x:Name="phone" Grid.Row="7" Grid.Column="1" Text="{Binding PhoneNumber}"/>
+
                             <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
-                            <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                            <Button Grid.Row="9" Content="Update" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="UpdateItem"/>
                         </Grid>
                     </StackPanel>
                 </Border>

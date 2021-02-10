@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarDealer.EntityFramework.Models;
+using CarDealer.EntityFramework.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,24 +19,27 @@ namespace CarDealerSQLite
     /// </summary>
     public partial class WindowUpdateCustomer : Window
     {
-        public WindowUpdateCustomer()
+        CarDealerContext dbContext;
+
+        Customer updateCustomer = new Customer();
+
+        public WindowUpdateCustomer(Customer selectedCustomer, CarDealerContext dbContext)
         {
+            
             InitializeComponent();
-        }
+            this.dbContext = dbContext;
+            UpdateCustomerGrid.DataContext = selectedCustomer;
+            updateCustomer = selectedCustomer;
 
-        private void AddItem(object s, RoutedEventArgs e)
+        }
+        
+        private void UpdateItem(object s, RoutedEventArgs a)
         {
-            /*dbContext.Customers.Add(newCustomer);
+            dbContext.Update(updateCustomer);
             dbContext.SaveChanges();
-            GetCustomers();
-            newCustomer = new Customer();
-            name.Clear();
-            surname.Clear();
-            city.Clear();
-            post.Clear();
-            mail.Clear();
-            phone.Clear();*/
-
         }
+
+        
+       
     }
 }

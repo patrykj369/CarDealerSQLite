@@ -82,9 +82,8 @@ namespace CarDealerSQLite
             
         }
 
-        //Customer selectedCustomer = new Customer();
+        //-----------------------------------UsuwanieCustomera---------------------------------------------------------//
         
-
         private void DeleteCustomer(object s, RoutedEventArgs e)
         {
 
@@ -121,11 +120,14 @@ namespace CarDealerSQLite
             }
         }
 
-
+        //--------------------------------------------EdycjaCustomera----------------------------------------//
+        //zrob powiadomienie w popup//
+        Customer selectedCustomer = new Customer();
         private void UpdateCustomer(object s, RoutedEventArgs e)
         {
-            WindowUpdateCustomer updateWindow = new WindowUpdateCustomer();
-            updateWindow.Show();
+            selectedCustomer = (s as FrameworkElement).DataContext as Customer;
+            WindowUpdateCustomer updateWindow = new WindowUpdateCustomer(selectedCustomer, this.dbContext);
+            updateWindow.Show();            
         }
 
     }
