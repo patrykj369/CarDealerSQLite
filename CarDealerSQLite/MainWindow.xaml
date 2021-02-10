@@ -56,11 +56,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
-                            <StackPanel Margin="5">
-                                <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                                <Grid Margin="5" x:Name="AddNewItemGrid">
+                        <StackPanel Margin="5">
+                            <GroupBox Header="Add new Customer" x:Name="AddGridCustomer">
+                                    <Grid Margin="5" x:Name="AddNewItemGrid">
+                                    
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
@@ -79,7 +79,7 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-
+                                    
                                     <Label Grid.Row="0" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="1" Grid.Column="0" Content=""/>
 
@@ -103,11 +103,11 @@
 
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
-                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
-
+                                        <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
                                 </Grid>
+                                </GroupBox>
                             </StackPanel>
-                        </Border>
+
                     </Grid>
                 </Grid>
             </TabItem>

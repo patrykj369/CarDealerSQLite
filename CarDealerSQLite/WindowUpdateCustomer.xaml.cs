@@ -37,9 +37,8 @@ namespace CarDealerSQLite
         {
             dbContext.Update(updateCustomer);
             dbContext.SaveChanges();
-        }
-
-        
+            this.Close();
+        }    
        
     }
 }

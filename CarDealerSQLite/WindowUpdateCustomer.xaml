@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="WindowUpdateCustomer" MinHeight="400" Width="600">
+        Title="WindowUpdateCustomer" Height="460" Width="540" WindowStartupLocation="CenterScreen">
 
 
     <Grid>

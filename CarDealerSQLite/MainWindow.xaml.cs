@@ -67,30 +67,45 @@ namespace CarDealerSQLite
         {
             Car.ItemsSource = dbContext.Cars.ToList();
         }
-
-        private void ReloadForm()
-        {
-            //dodać czyszczenie formularza
-        }
+        
+        //-----------------------------Dodawanie Customera-------------------------------------------------------------//
 
         private void AddItem(object s, RoutedEventArgs e)
         {
             dbContext.Customers.Add(newCustomer);
             dbContext.SaveChanges();
             GetCustomers();
+
+            string messageAdd = "Add new Customer: \n" + "ID: "+ newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " +newCustomer.Surname;
+            string captionAdd = "Add new Customer";
+            MessageBoxButton buttonAdd = MessageBoxButton.OK;
+            MessageBoxImage iconAdd = MessageBoxImage.Information;
+            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            clearTextBox(AddNewItemGrid);
             newCustomer = new Customer();
-            
+            AddNewItemGrid.DataContext = newCustomer;
+        }
+
+        public void clearTextBox(Grid gridName)
+        {
+            foreach (Control txtBox in gridName.Children)
+            {
+                if (txtBox.GetType() == typeof(TextBox))
+                    ((TextBox)txtBox).Text = string.Empty;
+                if (txtBox.GetType() == typeof(PasswordBox))
+                    ((PasswordBox)txtBox).Password = string.Empty;
+            }
         }
 
         //-----------------------------------UsuwanieCustomera---------------------------------------------------------//
-        
+
         private void DeleteCustomer(object s, RoutedEventArgs e)
         {
 
             string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
             string captionWarning = "Usuwanie";
             MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
-            MessageBoxImage iconWarning = MessageBoxImage.Warning;
+            MessageBoxImage iconWarning = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
 
 
@@ -120,14 +135,32 @@ namespace CarDealerSQLite
             }
         }
 
-        //--------------------------------------------EdycjaCustomera----------------------------------------//
+        //------------------------------------EdycjaCustomera----------------------------------------------------------//
         //zrob powiadomienie w popup//
         Customer selectedCustomer = new Customer();
         private void UpdateCustomer(object s, RoutedEventArgs e)
         {
-            selectedCustomer = (s as FrameworkElement).DataContext as Customer;
-            WindowUpdateCustomer updateWindow = new WindowUpdateCustomer(selectedCustomer, this.dbContext);
-            updateWindow.Show();            
+            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
+            string captionQuestion = "Edycja";
+            MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
+            MessageBoxImage iconQuestion = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
+
+
+            if(result == MessageBoxResult.Yes)
+            {
+                selectedCustomer = (s as FrameworkElement).DataContext as Customer;
+                WindowUpdateCustomer updateWindow = new WindowUpdateCustomer(selectedCustomer, this.dbContext);
+                updateWindow.Show();
+            }else
+            {
+                string messageEditionCancelled = "Edycja wycofana!";
+                string captionEditionCancelled = "Edycja";
+                MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
+                MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
+                MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
+            }
+                   
         }
 
     }
