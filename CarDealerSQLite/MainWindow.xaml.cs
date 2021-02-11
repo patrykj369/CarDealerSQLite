@@ -26,6 +26,9 @@ namespace CarDealerSQLite
         CarDealerContext dbContext;
 
         Customer newCustomer = new Customer();
+        Brand newBrand = new Brand();
+        Car newCar = new Car();
+        Model newModel = new Model();
 
         public MainWindow(CarDealerContext dbContext)
         {
@@ -35,10 +38,19 @@ namespace CarDealerSQLite
             GetBrand();
             GetModel();
             GetCar();
+            var brand = from b in dbContext.Brands
+                        select new
+                        {
+                            Name = b.Name
+                        };
+            BrandName.ItemsSource = brand.ToList();
 
             //----------------------------------------------------------------------//
 
             AddNewItemGrid.DataContext = newCustomer;
+            AddNewBrandGrid.DataContext = newBrand;
+            AddNewModelGrid.DataContext = newModel;
+            AddNewCarGrid.DataContext = newCar;
         }
 
         public MainWindow() { }
@@ -60,7 +72,6 @@ namespace CarDealerSQLite
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    BrandId = model.BrandID,
                     Brand = model.Brand,
                 }).ToList();
         }
@@ -106,34 +117,35 @@ namespace CarDealerSQLite
 
         private void AddModel(object s, RoutedEventArgs e)
         {
-            dbContext.Customers.Add(newCustomer);
+            dbContext.Models.Add(newModel);
             dbContext.SaveChanges();
-            GetCustomers();
+            GetModel();
 
-            string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
-            string captionAdd = "Add new Customer";
+            string messageAdd = "Add new Mode: \n" + "ID: " + newModel.Id + "; Name: " + newModel.Name;
+            string captionAdd = "Add new Model";
             MessageBoxButton buttonAdd = MessageBoxButton.OK;
             MessageBoxImage iconAdd = MessageBoxImage.Information;
             MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
-            clearTextBox(AddNewItemGrid);
-            newCustomer = new Customer();
-            AddNewItemGrid.DataContext = newCustomer;
+            clearTextBox(AddNewModelGrid);
+            newModel = new Model();
+            AddNewModelGrid.DataContext = newModel;
         }
+
 
         private void AddBrand(object s, RoutedEventArgs e)
         {
-            dbContext.Customers.Add(newCustomer);
+            dbContext.Brands.Add(newBrand);
             dbContext.SaveChanges();
-            GetCustomers();
+            GetBrand();
 
-            string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
-            string captionAdd = "Add new Customer";
+            string messageAdd = "Add new Brand: \n" + "ID: " + newBrand.Id + "; Name: " + newBrand.Name;
+            string captionAdd = "Add new Brand";
             MessageBoxButton buttonAdd = MessageBoxButton.OK;
             MessageBoxImage iconAdd = MessageBoxImage.Information;
             MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
-            clearTextBox(AddNewItemGrid);
-            newCustomer = new Customer();
-            AddNewItemGrid.DataContext = newCustomer;
+            clearTextBox(AddNewBrandGrid);
+            newBrand = new Brand();
+            AddNewBrandGrid.DataContext = newBrand;
         }
 
 

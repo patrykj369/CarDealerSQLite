@@ -20,6 +20,5 @@ namespace CarDealer.EntityFramework.Models
 
         public string PhoneNumber { get; set; }
 
-
     }
 }

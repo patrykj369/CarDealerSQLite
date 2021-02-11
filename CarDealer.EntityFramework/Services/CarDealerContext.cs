@@ -29,8 +29,8 @@ namespace CarDealer.EntityFramework.Services
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().HasData(GetCustomer());
-            modelBuilder.Entity<Brand>().HasData(GetBrand());
-            modelBuilder.Entity<Model>().HasOne(b => b.Brand);
+            modelBuilder.Entity<Brand>().HasMany(m => m.Models).WithOne(b => b.Brand);
+            modelBuilder.Entity<Model>().HasOne(b => b.Brand).WithMany(m => m.Models);
             modelBuilder.Entity<Car>();
             base.OnModelCreating(modelBuilder);
         }

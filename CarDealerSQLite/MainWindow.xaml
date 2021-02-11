@@ -275,7 +275,6 @@
                         <DataGrid.Columns >
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="BrandID" Binding="{Binding BrandId}"/>
                             <DataGridTextColumn Header="Brand" Binding="{Binding Brand}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -312,12 +311,11 @@
 
                                     <Label Grid.Row="1" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="2" Grid.Column="0" Content=""/>
-                                    <Label Grid.Row="3" Grid.Column="0" Content="Name"/>
-                                    <TextBox x:Name="NameModel" Grid.Row="3" Grid.Column="1" Text="{Binding Name}"/>
-                                    <Label Grid.Row="4" Grid.Column="0" Content="Brand ID"/>
-                                    <TextBox x:Name="BrandId" Grid.Row="4" Grid.Column="1" Text="{Binding BrandID}"/>
+                                    <Label Grid.Row="3" Grid.Column="0" Content=""/>
+                                    <Label Grid.Row="4" Grid.Column="0" Content="Name"/>
+                                    <TextBox x:Name="NameModel" Grid.Row="4" Grid.Column="1" Text="{Binding Name}"/>
                                     <Label Grid.Row="5" Grid.Column="0" Content="Brand"/>
-                                    <TextBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" Text="{Binding Brand}"/>
+                                    <ComboBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" SelectedValue="{Binding Path=Brand}" DisplayMemberPath="Name" SelectedValuePath="Name"/>
                                     <Label Grid.Row="6" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="7" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
