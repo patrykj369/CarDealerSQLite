@@ -109,7 +109,9 @@
                             </StackPanel>
 
                     </Grid>
+                    
                 </Grid>
+                
             </TabItem>
 
             <TabItem Header="Car">
@@ -139,13 +141,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                        
                             <StackPanel Margin="5">
-                                <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <GroupBox Header="Add new Car" x:Name="AddGridCar">
 
                                 <Grid Margin="5" x:Name="AddNewCarGrid">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
@@ -165,37 +166,38 @@
                                     </Grid.RowDefinitions>
 
                                     <Label Grid.Row="0" Grid.Column="0" Content="Brand ID" />
-                                    <TextBox x:Name="BrandID" Grid.Row="0" Grid.Column="2" Text="{Binding BrandID}"/>
+                                    <TextBox x:Name="BrandID" Grid.Row="0" Grid.Column="1" Text="{Binding BrandID}"/>
 
                                     <Label Grid.Row="1" Grid.Column="0" Content="Model ID" />
-                                    <TextBox x:Name="ModelID" Grid.Row="1" Grid.Column="2" Text="{Binding ModelID}"/>
+                                    <TextBox x:Name="ModelID" Grid.Row="1" Grid.Column="1" Text="{Binding ModelID}"/>
 
                                     <Label Grid.Row="2" Grid.Column="0" Content="Booking User ID" />
-                                    <TextBox x:Name="BookingUserID" Grid.Row="2" Grid.Column="2" Text="{Binding BookingUserID}"/>
+                                    <TextBox x:Name="BookingUserID" Grid.Row="2" Grid.Column="1" Text="{Binding BookingUserID}"/>
 
                                     <Label Grid.Row="3" Grid.Column="0" Content="Production Year" />
-                                    <TextBox x:Name="ProductionYear" Grid.Row="3" Grid.Column="2" Text="{Binding ProductionYear}"/>
+                                    <TextBox x:Name="ProductionYear" Grid.Row="3" Grid.Column="1" Text="{Binding ProductionYear}"/>
 
                                     <Label Grid.Row="4" Grid.Column="0" Content="Course" Grid.ColumnSpan="2" />
-                                    <TextBox x:Name="Course" Grid.Row="4" Grid.Column="2" Text="{Binding Course}"/>
+                                    <TextBox x:Name="Course" Grid.Row="4" Grid.Column="1" Text="{Binding Course}"/>
 
                                     <Label Grid.Row="5" Grid.Column="0" Content="Capacity" />
-                                    <TextBox x:Name="Capacity" Grid.Row="5" Grid.Column="2" Text="{Binding Capacity}"/>
+                                    <TextBox x:Name="Capacity" Grid.Row="5" Grid.Column="1" Text="{Binding Capacity}"/>
 
                                     <Label Grid.Row="6" Grid.Column="0" Content="Registration number" />
-                                    <TextBox x:Name="RegistrationNumber" Grid.Row="6" Grid.Column="2" Text="{Binding RegistrationNumber}"/>
+                                    <TextBox x:Name="RegistrationNumber" Grid.Row="6" Grid.Column="1" Text="{Binding RegistrationNumber}"/>
 
                                     <Label Grid.Row="7" Grid.Column="0" Content="Price" />
-                                    <TextBox x:Name="Price" Grid.Row="7" Grid.Column="2" Text="{Binding Price}"/>
+                                    <TextBox x:Name="Price" Grid.Row="7" Grid.Column="1" Text="{Binding Price}"/>
 
                                     <Label Grid.Row="8" Grid.Column="0" Content="Booked" />
-                                    <CheckBox x:Name="Prrice" Grid.Row="8" Grid.Column="2" Content="Yes/No" IsThreeState="True"/>
+                                    <CheckBox x:Name="Prrice" Grid.Row="8" Grid.Column="1" Content="Yes"/>
 
-                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="3" Click="AddItem"/>
+                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="3" Click="AddCar"/>
 
                                 </Grid>
+                                </GroupBox>
                             </StackPanel>
-                        </Border>
+                        
                     </Grid>
                 </Grid>
             </TabItem>
@@ -216,9 +218,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="5">
+                        
                             <StackPanel Margin="5">
-                                <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <GroupBox Header="Add new Brand" x:Name="AddGridBrand">
 
                                 <Grid Margin="5" x:Name="AddNewBrandGrid">
                                     <Grid.ColumnDefinitions>
@@ -253,10 +255,11 @@
                                     <Label Grid.Row="7" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
-                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddBrand"/>
                                 </Grid>
+                                </GroupBox>
                             </StackPanel>
-                        </Border>
+                       
                     </Grid>
                 </Grid>
 
@@ -280,9 +283,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="5">
+                        
                             <StackPanel Margin="5">
-                                <Label Content="Dodaj nowy wpis:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <GroupBox Header="Add new Model" x:Name="AddGridModel">
 
                                 <Grid Margin="5" x:Name="AddNewModelGrid">
                                     <Grid.ColumnDefinitions>
@@ -319,10 +322,11 @@
                                     <Label Grid.Row="7" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
-                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddModel"/>
                                 </Grid>
+                                </GroupBox>
                             </StackPanel>
-                        </Border>
+                       
                     </Grid>
                 </Grid>
             </TabItem>

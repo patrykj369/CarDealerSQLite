@@ -41,6 +41,8 @@ namespace CarDealerSQLite
             AddNewItemGrid.DataContext = newCustomer;
         }
 
+        public MainWindow() { }
+
         private void GetCustomers()
         {
             Customer.ItemsSource = dbContext.Customers.ToList();
@@ -86,6 +88,56 @@ namespace CarDealerSQLite
             AddNewItemGrid.DataContext = newCustomer;
         }
 
+        private void AddCar(object s, RoutedEventArgs e)
+        {
+            dbContext.Customers.Add(newCustomer);
+            dbContext.SaveChanges();
+            GetCustomers();
+
+            string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
+            string captionAdd = "Add new Customer";
+            MessageBoxButton buttonAdd = MessageBoxButton.OK;
+            MessageBoxImage iconAdd = MessageBoxImage.Information;
+            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            clearTextBox(AddNewItemGrid);
+            newCustomer = new Customer();
+            AddNewItemGrid.DataContext = newCustomer;
+        }
+
+        private void AddModel(object s, RoutedEventArgs e)
+        {
+            dbContext.Customers.Add(newCustomer);
+            dbContext.SaveChanges();
+            GetCustomers();
+
+            string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
+            string captionAdd = "Add new Customer";
+            MessageBoxButton buttonAdd = MessageBoxButton.OK;
+            MessageBoxImage iconAdd = MessageBoxImage.Information;
+            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            clearTextBox(AddNewItemGrid);
+            newCustomer = new Customer();
+            AddNewItemGrid.DataContext = newCustomer;
+        }
+
+        private void AddBrand(object s, RoutedEventArgs e)
+        {
+            dbContext.Customers.Add(newCustomer);
+            dbContext.SaveChanges();
+            GetCustomers();
+
+            string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
+            string captionAdd = "Add new Customer";
+            MessageBoxButton buttonAdd = MessageBoxButton.OK;
+            MessageBoxImage iconAdd = MessageBoxImage.Information;
+            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            clearTextBox(AddNewItemGrid);
+            newCustomer = new Customer();
+            AddNewItemGrid.DataContext = newCustomer;
+        }
+
+
+        //----------------------------------------Czyszczenie textBoxow-------------------------------------------------//
         public void clearTextBox(Grid gridName)
         {
             foreach (Control txtBox in gridName.Children)
