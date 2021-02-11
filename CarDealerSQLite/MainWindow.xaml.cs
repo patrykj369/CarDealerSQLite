@@ -41,7 +41,8 @@ namespace CarDealerSQLite
             var brand = from b in dbContext.Brands
                         select new
                         {
-                            Name = b.Name
+                            Name = b.Name,
+                            Id = b.Id
                         };
             BrandName.ItemsSource = brand.ToList();
 
@@ -117,6 +118,9 @@ namespace CarDealerSQLite
 
         private void AddModel(object s, RoutedEventArgs e)
         {
+
+            //var id = BrandName
+            //newModel.Brand.Id
             dbContext.Models.Add(newModel);
             dbContext.SaveChanges();
             GetModel();
