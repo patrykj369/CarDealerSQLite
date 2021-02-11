@@ -72,7 +72,7 @@ namespace CarDealerSQLite
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    Brand = model.Brand,
+                    Brand = model.Brand.Name
                 }).ToList();
         }
 
