@@ -19,16 +19,18 @@ namespace CarDealer.EntityFramework.Models
         public int BookingUserID { get; set; }
 
         public Customer BookingUser { get; set; }
+
+
   
         public DateTime ProductionYear { get; set; }
 
-        public int Course { get; set; } //przebieg
+        public string Course { get; set; } //przebieg
 
-        public double Capacity { get; set; } //pojemnosc
+        public string Capacity { get; set; } //pojemnosc
 
         public string RegistrationNumber { get; set; }
 
-        public double Price { get; set; }
+        public string Price { get; set; }
 
         public bool Booking { get; set; } //czy zarezerwowany
 

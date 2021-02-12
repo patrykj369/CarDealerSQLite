@@ -114,7 +114,7 @@
                 
             </TabItem>
 
-            <TabItem Header="Car">
+            <TabItem Header="Car" Height="20" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
@@ -165,14 +165,14 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Content="Brand ID" />
-                                    <TextBox x:Name="BrandID" Grid.Row="0" Grid.Column="1" Text="{Binding BrandID}"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Brand" />
+                                    <ComboBox x:Name="CarBrand" Grid.Row="0" Grid.Column="1" SelectedValue="{Binding Brand}" DisplayMemberPath="Name"/>
 
-                                    <Label Grid.Row="1" Grid.Column="0" Content="Model ID" />
-                                    <TextBox x:Name="ModelID" Grid.Row="1" Grid.Column="1" Text="{Binding ModelID}"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Model" />
+                                    <ComboBox x:Name="CarModel" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Model}" DisplayMemberPath="Name"/>
 
-                                    <Label Grid.Row="2" Grid.Column="0" Content="Booking User ID" />
-                                    <TextBox x:Name="BookingUserID" Grid.Row="2" Grid.Column="1" Text="{Binding BookingUserID}"/>
+                                    <Label Grid.Row="2" Grid.Column="0" Content="Booking User" />
+                                    <ComboBox x:Name="CarUser" Grid.Row="2" Grid.Column="1" SelectedValue="{Binding BookingUser}" DisplayMemberPath="Name"/>
 
                                     <Label Grid.Row="3" Grid.Column="0" Content="Production Year" />
                                     <TextBox x:Name="ProductionYear" Grid.Row="3" Grid.Column="1" Text="{Binding ProductionYear}"/>

@@ -39,14 +39,9 @@ namespace CarDealerSQLite
             GetBrand();
             GetModel();
             GetCar();
-            var brand = from b in dbContext.Brands
-                        select new
-                        {
-                            Id = b.Id,
-                            Name = b.Name
-                        };
-            BrandName.ItemsSource = brand.ToList();
-
+            DisplayBrandList();
+            DisplayModelList();
+            DisplayBookingCustomersList();
             //----------------------------------------------------------------------//
 
             AddNewItemGrid.DataContext = newCustomer;
@@ -57,6 +52,43 @@ namespace CarDealerSQLite
         }
 
         public MainWindow() { }
+
+        private void DisplayBrandList()
+        {
+            var brand = from b in dbContext.Brands
+                        select new
+                        {
+                            Id = b.Id,
+                            Name = b.Name
+                        };
+            BrandName.ItemsSource = brand.ToList();
+            CarBrand.ItemsSource = brand.ToList();
+        }
+
+        private void DisplayModelList()
+        {
+            var models = from b in dbContext.Models
+                        select new
+                        {
+                            Id = b.Id,
+                            Name = b.Name
+                        };
+            
+            CarModel.ItemsSource = models.ToList();
+        }
+
+        private void DisplayBookingCustomersList()
+        {
+            var customers = from b in dbContext.Customers
+                         select new
+                         {
+                             Id = b.Id,
+                             Name = b.Name + " "+ b.Surname + "; " + b.Email + "; " + b.PostNumberr + " " + b.City
+                             
+                         };
+
+            CarUser.ItemsSource = customers.ToList();
+        }
 
         private void GetCustomers()
         {
@@ -99,12 +131,16 @@ namespace CarDealerSQLite
             MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
             clearTextBox(AddNewItemGrid);
             newCustomer = new Customer();
+
             AddNewItemGrid.DataContext = newCustomer;
+
+            DisplayBrandList();
+            DisplayBookingCustomersList();
         }
 
         private void AddCar(object s, RoutedEventArgs e)
         {
-            dbContext.Customers.Add(newCustomer);
+            dbContext.Cars.Add(newCar);
             dbContext.SaveChanges();
             GetCustomers();
 
@@ -116,6 +152,8 @@ namespace CarDealerSQLite
             clearTextBox(AddNewItemGrid);
             newCustomer = new Customer();
             AddNewItemGrid.DataContext = newCustomer;
+
+            DisplayBrandList();
         }
 
         private void AddModel(object s, RoutedEventArgs e)
@@ -139,6 +177,9 @@ namespace CarDealerSQLite
             clearTextBox(AddNewModelGrid);
             newModel = new Model();
             AddNewModelGrid.DataContext = newModel;
+
+            DisplayBrandList();
+            DisplayModelList();
         }
 
 
@@ -147,7 +188,7 @@ namespace CarDealerSQLite
             dbContext.Brands.Add(newBrand);
             dbContext.SaveChanges();
             GetBrand();
-
+            
             string messageAdd = "Add new Brand: \n" + "ID: " + newBrand.Id + "; Name: " + newBrand.Name;
             string captionAdd = "Add new Brand";
             MessageBoxButton buttonAdd = MessageBoxButton.OK;
@@ -156,6 +197,8 @@ namespace CarDealerSQLite
             clearTextBox(AddNewBrandGrid);
             newBrand = new Brand();
             AddNewBrandGrid.DataContext = newBrand;
+
+            DisplayBrandList();
         }
 
 
