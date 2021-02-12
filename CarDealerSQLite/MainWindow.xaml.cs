@@ -47,7 +47,6 @@ namespace CarDealerSQLite
             AddNewItemGrid.DataContext = newCustomer;
             AddNewBrandGrid.DataContext = newBrand;
             AddNewModelGrid.DataContext = newModel;
-            
             AddNewCarGrid.DataContext = newCar;
         }
 
@@ -140,20 +139,51 @@ namespace CarDealerSQLite
 
         private void AddCar(object s, RoutedEventArgs e)
         {
+            char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+            //------Brand-------//
+            var model_brand = CarBrand.SelectionBoxItem.ToString();
+            string id_Brand = model_brand.Split(',')[0];
+            int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
+            Brand tmp_brand = dbContext.Brands.Find(idBeforeTrim_Brand);
+            newCar.Brand = tmp_brand;
+
+            //------------Model----------------//
+
+            var model_Model = CarModel.SelectionBoxItem.ToString();
+            string id_Model = model_Model.Split(',')[0];
+            int idBeforeTrim_Model = Int32.Parse(id_Brand.Trim(charsToTrim));
+            Model tmp_Model = dbContext.Models.Find(idBeforeTrim_Model);
+            newCar.Model = tmp_Model;
+
+            //------BookingUser--------------//
+
+            var model_User = CarUser.SelectionBoxItem.ToString();
+            string id_User = model_Model.Split(',')[0];
+            int idBeforeTrim_User = Int32.Parse(id_User.Trim(charsToTrim));
+            Customer tmp_User = dbContext.Customers.Find(idBeforeTrim_User);
+            newCar.BookingUser = tmp_User;
+
+            //-----------dodawanie nowego samochodu, zapisywanie zmian, reload widoku--------//
+
             dbContext.Cars.Add(newCar);
             dbContext.SaveChanges();
-            GetCustomers();
+            GetCar();
+            
+            //-----------wyswietlanie komunikatow------------------//
 
-            string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
+            string messageAdd = "Add new Customer: \n" + "ID: " + newCar.Id + "; Model: " + newCar.Model.Name + "; Brand: " + newCar.Brand.Name;
             string captionAdd = "Add new Customer";
             MessageBoxButton buttonAdd = MessageBoxButton.OK;
             MessageBoxImage iconAdd = MessageBoxImage.Information;
             MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
-            clearTextBox(AddNewItemGrid);
-            newCustomer = new Customer();
-            AddNewItemGrid.DataContext = newCustomer;
 
-            DisplayBrandList();
+            //-------------czyszczenie formularza---------------//
+
+            clearTextBox(AddNewCarGrid);
+            newCar = new Car();
+            AddNewCarGrid.DataContext = newCar;
+
+            
         }
 
         private void AddModel(object s, RoutedEventArgs e)
@@ -165,6 +195,7 @@ namespace CarDealerSQLite
             int idBeforeTrim = Int32.Parse(id.Trim(charsToTrim));
             Brand tmp = dbContext.Brands.Find(idBeforeTrim);
             newModel.Brand = tmp;
+
             dbContext.Models.Add(newModel);
             dbContext.SaveChanges();
             GetModel();
