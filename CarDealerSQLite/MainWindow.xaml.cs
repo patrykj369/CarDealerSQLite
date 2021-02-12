@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using CarDealer.EntityFramework.Models;
+using System.Data.Entity.SqlServer;
 
 namespace CarDealerSQLite
 {
@@ -41,8 +42,8 @@ namespace CarDealerSQLite
             var brand = from b in dbContext.Brands
                         select new
                         {
-                            Name = b.Name,
-                            Id = b.Id
+                            Id = b.Id,
+                            Name = b.Name
                         };
             BrandName.ItemsSource = brand.ToList();
 
@@ -51,6 +52,7 @@ namespace CarDealerSQLite
             AddNewItemGrid.DataContext = newCustomer;
             AddNewBrandGrid.DataContext = newBrand;
             AddNewModelGrid.DataContext = newModel;
+            
             AddNewCarGrid.DataContext = newCar;
         }
 
@@ -119,8 +121,12 @@ namespace CarDealerSQLite
         private void AddModel(object s, RoutedEventArgs e)
         {
 
-            //var id = BrandName
-            //newModel.Brand.Id
+            var model = BrandName.SelectionBoxItem.ToString();
+            char[] charsToTrim = { '{', 'I', 'd', '=', ' '};
+            string id = model.Split(',')[0];
+            int idBeforeTrim = Int32.Parse(id.Trim(charsToTrim));
+            Brand tmp = dbContext.Brands.Find(idBeforeTrim);
+            newModel.Brand = tmp;
             dbContext.Models.Add(newModel);
             dbContext.SaveChanges();
             GetModel();

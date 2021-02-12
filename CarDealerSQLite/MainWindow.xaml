@@ -315,7 +315,7 @@
                                     <Label Grid.Row="4" Grid.Column="0" Content="Name"/>
                                     <TextBox x:Name="NameModel" Grid.Row="4" Grid.Column="1" Text="{Binding Name}"/>
                                     <Label Grid.Row="5" Grid.Column="0" Content="Brand"/>
-                                    <ComboBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Brand}" SelectedValue="{Binding Id}" DisplayMemberPath="Name"/>
+                                    <ComboBox x:Name="BrandName" Grid.Row="5" Grid.Column="1" SelectedValue="{Binding Id}" DisplayMemberPath="Name"/>
                                     <Label Grid.Row="6" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="7" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
