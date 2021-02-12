@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="MainWindow" WindowState="Maximized" WindowStyle="SingleBorderWindow">
+        Title="CarDealer" WindowState="Maximized" WindowStyle="SingleBorderWindow" Topmost="True" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="173*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
+        <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Left" Content="Car Dealer" Grid.ColumnSpan="2" Margin="208,0,0,0"/>
 
-        <TabControl TabStripPlacement="Top" Grid.Row="1">
+        <TabControl TabStripPlacement="Top" Grid.Row="1" Grid.ColumnSpan="2">
             <TabItem Header="Customer">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -40,15 +44,15 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                        
 
-                        <DataGridTemplateColumn Header="Update Customer">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="UPDATE" Click="UpdateCustomer"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Update Customer">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="UPDATE" Click="UpdateCustomer"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
 
                     </DataGrid>
@@ -59,8 +63,8 @@
 
                         <StackPanel Margin="5">
                             <GroupBox Header="Add new Customer" x:Name="AddGridCustomer">
-                                    <Grid Margin="5" x:Name="AddNewItemGrid">
-                                    
+                                <Grid Margin="5" x:Name="AddNewItemGrid">
+
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
@@ -79,7 +83,7 @@
                                         <RowDefinition/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    
+
                                     <Label Grid.Row="0" Grid.Column="0" Content=""/>
                                     <Label Grid.Row="1" Grid.Column="0" Content=""/>
 
@@ -103,15 +107,15 @@
 
                                     <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
-                                        <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
+                                    <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddItem"/>
                                 </Grid>
-                                </GroupBox>
-                            </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
 
                     </Grid>
-                    
+
                 </Grid>
-                
+
             </TabItem>
 
             <TabItem Header="Car" Height="20" VerticalAlignment="Top">
@@ -141,9 +145,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
-                            <StackPanel Margin="5">
-                                <GroupBox Header="Add new Car" x:Name="AddGridCar">
+
+                        <StackPanel Margin="5">
+                            <GroupBox Header="Add new Car" x:Name="AddGridCar">
 
                                 <Grid Margin="5" x:Name="AddNewCarGrid">
                                     <Grid.ColumnDefinitions>
@@ -195,9 +199,9 @@
                                     <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="3" Click="AddCar"/>
 
                                 </Grid>
-                                </GroupBox>
-                            </StackPanel>
-                        
+                            </GroupBox>
+                        </StackPanel>
+
                     </Grid>
                 </Grid>
             </TabItem>
@@ -218,9 +222,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
-                            <StackPanel Margin="5">
-                                <GroupBox Header="Add new Brand" x:Name="AddGridBrand">
+
+                        <StackPanel Margin="5">
+                            <GroupBox Header="Add new Brand" x:Name="AddGridBrand">
 
                                 <Grid Margin="5" x:Name="AddNewBrandGrid">
                                     <Grid.ColumnDefinitions>
@@ -257,9 +261,9 @@
 
                                     <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddBrand"/>
                                 </Grid>
-                                </GroupBox>
-                            </StackPanel>
-                       
+                            </GroupBox>
+                        </StackPanel>
+
                     </Grid>
                 </Grid>
 
@@ -282,9 +286,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
-                            <StackPanel Margin="5">
-                                <GroupBox Header="Add new Model" x:Name="AddGridModel">
+
+                        <StackPanel Margin="5">
+                            <GroupBox Header="Add new Model" x:Name="AddGridModel">
 
                                 <Grid Margin="5" x:Name="AddNewModelGrid">
                                     <Grid.ColumnDefinitions>
@@ -322,9 +326,9 @@
 
                                     <Button Grid.Row="9" Content="Add" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="AddModel"/>
                                 </Grid>
-                                </GroupBox>
-                            </StackPanel>
-                       
+                            </GroupBox>
+                        </StackPanel>
+
                     </Grid>
                 </Grid>
             </TabItem>
