@@ -141,7 +141,9 @@ namespace CarDealerSQLite
         private void AddCar(object s, RoutedEventArgs e)
         {
             char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+
             //------Brand-------//
+
             var model_brand = CarBrand.SelectionBoxItem.ToString();
             string id_Brand = model_brand.Split(',')[0];
             int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
@@ -235,6 +237,7 @@ namespace CarDealerSQLite
 
 
         //----------------------------------------Czyszczenie textBoxow-------------------------------------------------//
+
         public void clearTextBox(Grid gridName)
         {
             foreach (Control txtBox in gridName.Children)
@@ -285,7 +288,9 @@ namespace CarDealerSQLite
         }
 
         //------------------------------------EdycjaCustomera----------------------------------------------------------//
+
         //zrob powiadomienie w popup//
+
         Customer selectedCustomer = new Customer();
         private void UpdateCustomer(object s, RoutedEventArgs e)
         {
