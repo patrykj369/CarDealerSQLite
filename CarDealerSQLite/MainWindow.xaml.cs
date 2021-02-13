@@ -60,6 +60,7 @@ namespace CarDealerSQLite
                             Id = b.Id,
                             Name = b.Name
                         };
+
             BrandName.ItemsSource = brand.ToList();
             CarBrand.ItemsSource = brand.ToList();
         }
