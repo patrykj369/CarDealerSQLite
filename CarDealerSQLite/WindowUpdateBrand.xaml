@@ -14,7 +14,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-
         <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
 
         <Grid Grid.Row="1">
@@ -50,7 +49,6 @@
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Content=""/>
-
 
                             <Label Grid.Row="1" Grid.Column="0" Content=""/>
                             <Label Grid.Row="2" Grid.Column="0" Content=""/>

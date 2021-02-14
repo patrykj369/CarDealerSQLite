@@ -84,8 +84,7 @@ namespace CarDealerSQLite
                          select new
                          {
                              Id = b.Id,
-                             Name = b.Name + " "+ b.Surname + "; " + b.Email + "; " + b.PostNumberr + " " + b.City
-                             
+                             Name = b.Name + " "+ b.Surname + "; " + b.Email + "; " + b.PostNumberr + " " + b.City     
                          };
 
             CarUser.ItemsSource = customers.ToList();
@@ -200,8 +199,7 @@ namespace CarDealerSQLite
             clearTextBox(AddNewCarGrid);
             newCar = new Car();
             AddNewCarGrid.DataContext = newCar;
-
-            
+      
         }
 
         private void AddModel(object s, RoutedEventArgs e)
@@ -230,7 +228,6 @@ namespace CarDealerSQLite
             DisplayBrandList();
             DisplayModelList();
         }
-
 
         private void AddBrand(object s, RoutedEventArgs e)
         {
