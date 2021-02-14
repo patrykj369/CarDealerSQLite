@@ -42,6 +42,7 @@ namespace CarDealerSQLite
             DisplayBrandList();
             DisplayModelList();
             DisplayBookingCustomersList();
+
             //----------------------------------------------------------------------//
 
             AddNewItemGrid.DataContext = newCustomer;
@@ -113,7 +114,23 @@ namespace CarDealerSQLite
 
         private void GetCar()
         {
-            Car.ItemsSource = dbContext.Cars.ToList();
+            //Car.ItemsSource = dbContext.Cars.ToList();
+
+            Car.ItemsSource = dbContext.Cars
+                .Select(car => new
+                {
+                    Id = car.Id,
+                    Brand = car.Brand.Name,
+                    Model = car.Model.Name,
+                    BookingUser = car.BookingUser.Name +" " + car.BookingUser.Surname,
+                    ProductionYear = car.ProductionYear,
+                    Course = car.Course,
+                    Capacity = car.Capacity,
+                    RegistrationNumber = car.RegistrationNumber,
+                    Price = car.Price,
+                    Booking = car.Booking,
+                    Image = car.Image
+                }).ToList();
         }
         
         //-----------------------------Dodawanie Customera-------------------------------------------------------------//
