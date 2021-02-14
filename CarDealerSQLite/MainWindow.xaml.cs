@@ -114,8 +114,6 @@ namespace CarDealerSQLite
 
         private void GetCar()
         {
-            //Car.ItemsSource = dbContext.Cars.ToList();
-
             Car.ItemsSource = dbContext.Cars
                 .Select(car => new
                 {
