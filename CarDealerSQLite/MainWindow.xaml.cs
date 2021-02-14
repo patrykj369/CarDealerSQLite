@@ -302,6 +302,113 @@ namespace CarDealerSQLite
             }
         }
 
+        private void DeleteCar(object s, RoutedEventArgs e)
+        {
+
+            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
+            string captionWarning = "Usuwanie";
+            MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
+            MessageBoxImage iconWarning = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
+
+
+            if (result == MessageBoxResult.Yes)
+            {
+                //Usuwanie z bazy
+                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
+                dbContext.Customers.Remove(customerToBeDelated);
+                dbContext.SaveChanges();
+
+                //wiadomosc wyswietlana na ekranie
+                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string caption = "Usuwanie";
+                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                GetCustomers();
+            }
+            else
+            {
+                string messageInfo = "Usuwanie anulowane!";
+                string captionInfo = "Usuwanie";
+                MessageBoxButton buttonInfo = MessageBoxButton.OK;
+                MessageBoxImage iconInfo = MessageBoxImage.Warning;
+                MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
+
+            }
+        }
+
+        private void DeleteBrand(object s, RoutedEventArgs e)
+        {
+
+            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
+            string captionWarning = "Usuwanie";
+            MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
+            MessageBoxImage iconWarning = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
+
+
+            if (result == MessageBoxResult.Yes)
+            {
+                //Usuwanie z bazy
+                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
+                dbContext.Customers.Remove(customerToBeDelated);
+                dbContext.SaveChanges();
+
+                //wiadomosc wyswietlana na ekranie
+                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string caption = "Usuwanie";
+                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                GetCustomers();
+            }
+            else
+            {
+                string messageInfo = "Usuwanie anulowane!";
+                string captionInfo = "Usuwanie";
+                MessageBoxButton buttonInfo = MessageBoxButton.OK;
+                MessageBoxImage iconInfo = MessageBoxImage.Warning;
+                MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
+
+            }
+        }
+
+        private void DeleteModel(object s, RoutedEventArgs e)
+        {
+
+            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
+            string captionWarning = "Usuwanie";
+            MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
+            MessageBoxImage iconWarning = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
+
+
+            if (result == MessageBoxResult.Yes)
+            {
+                //Usuwanie z bazy
+                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
+                dbContext.Customers.Remove(customerToBeDelated);
+                dbContext.SaveChanges();
+
+                //wiadomosc wyswietlana na ekranie
+                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string caption = "Usuwanie";
+                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                GetCustomers();
+            }
+            else
+            {
+                string messageInfo = "Usuwanie anulowane!";
+                string captionInfo = "Usuwanie";
+                MessageBoxButton buttonInfo = MessageBoxButton.OK;
+                MessageBoxImage iconInfo = MessageBoxImage.Warning;
+                MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
+
+            }
+        }
         //------------------------------------EdycjaCustomera----------------------------------------------------------//
 
         //zrob powiadomienie w popup//
@@ -330,6 +437,86 @@ namespace CarDealerSQLite
                 MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
             }
                    
+        }
+
+        Car selectedCar = new Car();
+        private void UpdateCar(object s, RoutedEventArgs e)
+        {
+            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
+            string captionQuestion = "Edycja";
+            MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
+            MessageBoxImage iconQuestion = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
+
+
+            if (result == MessageBoxResult.Yes)
+            {
+                selectedCar = (s as FrameworkElement).DataContext as Car;
+                WindowUpdateCar updateWindow = new WindowUpdateCar(selectedCar, this.dbContext);
+                updateWindow.Show();
+            }
+            else
+            {
+                string messageEditionCancelled = "Edycja wycofana!";
+                string captionEditionCancelled = "Edycja";
+                MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
+                MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
+                MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
+            }
+        }
+
+        Brand selectedBrand = new Brand();
+        private void UpdateBrand(object s, RoutedEventArgs e)
+        {
+            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
+            string captionQuestion = "Edycja";
+            MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
+            MessageBoxImage iconQuestion = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
+
+
+            if (result == MessageBoxResult.Yes)
+            {
+                selectedBrand = (s as FrameworkElement).DataContext as Brand;
+                WindowUpdateBrand updateWindow = new WindowUpdateBrand(selectedBrand, this.dbContext);
+                updateWindow.Show();
+            }
+            else
+            {
+                string messageEditionCancelled = "Edycja wycofana!";
+                string captionEditionCancelled = "Edycja";
+                MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
+                MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
+                MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
+            }
+
+        }
+
+        Model selectedModel = new Model();
+        private void UpdateModel(object s, RoutedEventArgs e)
+        {
+            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
+            string captionQuestion = "Edycja";
+            MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
+            MessageBoxImage iconQuestion = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
+
+
+            if (result == MessageBoxResult.Yes)
+            {
+                selectedModel = (s as FrameworkElement).DataContext as Model;
+                WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
+                updateWindow.Show();
+            }
+            else
+            {
+                string messageEditionCancelled = "Edycja wycofana!";
+                string captionEditionCancelled = "Edycja";
+                MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
+                MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
+                MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
+            }
+
         }
 
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="CarDealer" WindowState="Maximized" WindowStyle="SingleBorderWindow" Topmost="True" WindowStartupLocation="CenterScreen">
+        Title="CarDealer" WindowState="Maximized" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -18,7 +18,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Left" Content="Car Dealer" Grid.ColumnSpan="2" Margin="208,0,0,0"/>
+        <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer" Grid.ColumnSpan="2"/>
 
         <TabControl TabStripPlacement="Top" Grid.Row="1" Grid.ColumnSpan="2">
             <TabItem Header="Customer">
@@ -138,6 +138,24 @@
                             <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
                             <DataGridTextColumn Header="Booking" Binding="{Binding Booking}"/>
                             <DataGridTextColumn Header="Image" Binding="{Binding Image}"/>
+
+                            <DataGridTemplateColumn Header="Delete Car">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="DELETE" Click="DeleteCar"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTemplateColumn Header="Update Car">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="UPDATE" Click="UpdateCar"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        
                         </DataGrid.Columns>
                     </DataGrid>
 
@@ -216,6 +234,24 @@
                         <DataGrid.Columns >
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+
+                            <DataGridTemplateColumn Header="Delete Brand">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="DELETE" Click="DeleteBrand"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTemplateColumn Header="Update Brand">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="UPDATE" Click="UpdateBrand"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="1">
@@ -280,6 +316,24 @@
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                             <DataGridTextColumn Header="Brand" Binding="{Binding Brand}"/>
+
+                            <DataGridTemplateColumn Header="Delete Model">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="DELETE" Click="DeleteModel"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+                            <DataGridTemplateColumn Header="Update Model">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="UPDATE" Click="UpdateModel"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="1">

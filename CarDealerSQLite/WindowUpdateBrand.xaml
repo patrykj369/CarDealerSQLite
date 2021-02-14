@@ -1,11 +1,11 @@
-﻿<Window x:Class="CarDealerSQLite.WindowUpdateCustomer"
+﻿<Window x:Class="CarDealerSQLite.WindowUpdateBrand"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="WindowUpdateCustomer" Height="460" Width="540" WindowStartupLocation="CenterScreen">
+        Title="WindowUpdateBrand" Height="460" Width="540" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -21,16 +21,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
                 <StackPanel Margin="5">
-                    <GroupBox Header="Update Csutomer" x:Name="_UpdateGridCustomer">
+                    <GroupBox Header="Update Brand" x:Name="UpdateGridBrand">
 
-                        <Grid Margin="5" x:Name="UpdateCustomerGrid">
+                        <Grid Margin="5" x:Name="UpdateBrandGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -51,26 +50,16 @@
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Content=""/>
+
+
                             <Label Grid.Row="1" Grid.Column="0" Content=""/>
-
-                            <Label Grid.Row="2" Grid.Column="0" Content="Name"/>
-                            <TextBox x:Name="name" Grid.Row="2" Grid.Column="1" Text="{Binding Name}"/>
-
-                            <Label Grid.Row="3" Grid.Column="0" Content="Surname"/>
-                            <TextBox x:Name="surname" Grid.Row="3" Grid.Column="1" Text="{Binding Surname}"/>
-
-                            <Label Grid.Row="4" Grid.Column="0" Content="City"/>
-                            <TextBox x:Name="city" Grid.Row="4" Grid.Column="1" Text="{Binding City}"/>
-
-                            <Label Grid.Row="5" Grid.Column="0" Content="Post number"/>
-                            <TextBox x:Name="post" Grid.Row="5" Grid.Column="1" Text="{Binding PostNumberr}"/>
-
-                            <Label Grid.Row="6" Grid.Column="0" Content="E-mail"/>
-                            <TextBox x:Name="mail" Grid.Row="6" Grid.Column="1" Text="{Binding Email}"/>
-
-                            <Label Grid.Row="7" Grid.Column="0" Content="Phone number"/>
-                            <TextBox x:Name="phone" Grid.Row="7" Grid.Column="1" Text="{Binding PhoneNumber}"/>
-
+                            <Label Grid.Row="2" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="Name"/>
+                            <TextBox x:Name="NameBrand" Grid.Row="3" Grid.Column="1" Text="{Binding Name}"/>
+                            <Label Grid.Row="4" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="5" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="6" Grid.Column="0" Content=""/>
+                            <Label Grid.Row="7" Grid.Column="0" Content=""/>
                             <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
                             <Button Grid.Row="9" Content="Update" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="UpdateItem"/>
