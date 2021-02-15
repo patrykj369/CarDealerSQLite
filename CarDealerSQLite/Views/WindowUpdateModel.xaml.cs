@@ -43,7 +43,7 @@ namespace CarDealerSQLite
             BrandName.ItemsSource = brand.ToList();
             //CarBrand.ItemsSource = brand.ToList();
             //BrandName.Text = selectedModel.Brand.Name;
-            
+            BrandName.SelectedIndex = 0;
         }
 
         private void UpdateItem(object s, RoutedEventArgs a)

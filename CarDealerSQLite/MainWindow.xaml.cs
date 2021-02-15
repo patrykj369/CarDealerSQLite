@@ -348,12 +348,12 @@ namespace CarDealerSQLite
             if (result == MessageBoxResult.Yes)
             {
                 //Usuwanie z bazy
-                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
-                dbContext.Customers.Remove(customerToBeDelated);
+                var brandToBeDelated = (s as FrameworkElement).DataContext as Brand;
+                dbContext.Brands.Remove(brandToBeDelated);
                 dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string messageBoxText = "Usunięto: \n" + "ID: " + brandToBeDelated.Id + "; Name: " + brandToBeDelated.Name ;
                 string caption = "Usuwanie";
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
