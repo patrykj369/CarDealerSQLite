@@ -100,7 +100,7 @@ namespace CarDealerSQLite
             Brand.ItemsSource = dbContext.Brands.ToList();
         }
 
-        private void GetModel()
+        public void GetModel()
         {
             Model.ItemsSource = dbContext.Models
                 .Select(model => new
@@ -250,7 +250,7 @@ namespace CarDealerSQLite
 
         //----------------------------------------Czyszczenie textBoxow-------------------------------------------------//
 
-        public void clearTextBox(Grid gridName)
+        private void clearTextBox(Grid gridName)
         {
             foreach (Control txtBox in gridName.Children)
             {
@@ -490,6 +490,7 @@ namespace CarDealerSQLite
         }
 
         Model selectedModel = new Model();
+        
         private void UpdateModel(object s, RoutedEventArgs e)
         {
             string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
@@ -501,9 +502,42 @@ namespace CarDealerSQLite
 
             if (result == MessageBoxResult.Yes)
             {
-                selectedModel = (s as FrameworkElement).DataContext as Model;
+                string zmienna = ((s as FrameworkElement).DataContext).ToString();
+
+
+                //----id------
+                char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+                string tmp = zmienna.Split(',')[0];
+                int idAfterTrim = Int32.Parse(tmp.Trim(charsToTrim));
+                selectedModel.Id = idAfterTrim;
+
+                //-------model-----
+                string tmp2 = zmienna.Split(',')[1];
+                int find = tmp2.IndexOf('=')+2;
+                int all = tmp2.Length;
+                int position = (all - find);
+                string name = tmp2.Substring(find, position);
+                selectedModel.Name = name;
+
+                //-------marka------
+                string tmp3 = zmienna.Split(',')[2];
+                int find1 = tmp3.IndexOf('=') + 2;
+                int all1 = tmp3.Length;
+                int position1 = (all1 - find1)-2;
+                string brand = tmp3.Substring(find1, position1);
+
+
+                var query = dbContext.Brands;
+
+                var query1 = query.Where(a => a.Name == brand).Single();
+                            
+                Brand fullBrand = dbContext.Brands.Find(query1.Id);
+                selectedModel.Brand = fullBrand;
+
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
                 updateWindow.Show();
+                
+
             }
             else
             {
