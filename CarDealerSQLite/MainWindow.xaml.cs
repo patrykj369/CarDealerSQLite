@@ -554,7 +554,13 @@ namespace CarDealerSQLite
 
         private void Reload(object s, RoutedEventArgs e)
         {
+            GetCustomers();
+            GetBrand();
             GetModel();
+            GetCar();
+            DisplayBrandList();
+            DisplayModelList();
+            DisplayBookingCustomersList();
         }
     }
 }
