@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer" Grid.ColumnSpan="2"/>
-
+        <Button Grid.Row="0" Content="Reload View" Click="Reload" Grid.Column="1" Margin="521,37,5,3"/>
         <TabControl TabStripPlacement="Top" Grid.Row="1" Grid.ColumnSpan="2">
             <TabItem Header="Customer">
                 <Grid>
@@ -155,7 +155,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                        
+
                         </DataGrid.Columns>
                     </DataGrid>
 
@@ -251,7 +251,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="1">
@@ -333,7 +333,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            
+
                         </DataGrid.Columns>
                     </DataGrid>
                     <Grid Grid.Row="1">
@@ -387,10 +387,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-
-
-
-
     </Grid>
 </Window>
     

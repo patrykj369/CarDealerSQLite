@@ -409,7 +409,7 @@ namespace CarDealerSQLite
         //------------------------------------EdycjaCustomera----------------------------------------------------------//
 
         //zrob powiadomienie w popup//
-
+        //-------------------działa--------------------------
         Customer selectedCustomer = new Customer();
         private void UpdateCustomer(object s, RoutedEventArgs e)
         {
@@ -436,6 +436,7 @@ namespace CarDealerSQLite
                    
         }
 
+        //---------DO-ZROBIENIA----------------
         Car selectedCar = new Car();
         private void UpdateCar(object s, RoutedEventArgs e)
         {
@@ -462,6 +463,7 @@ namespace CarDealerSQLite
             }
         }
 
+        //-------działa--------------
         Brand selectedBrand = new Brand();
         private void UpdateBrand(object s, RoutedEventArgs e)
         {
@@ -550,5 +552,9 @@ namespace CarDealerSQLite
 
         }
 
+        private void Reload(object s, RoutedEventArgs e)
+        {
+            GetModel();
+        }
     }
 }
