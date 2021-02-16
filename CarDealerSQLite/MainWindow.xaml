@@ -128,6 +128,7 @@
                     <DataGrid Grid.Row="0" AutoGenerateColumns="False" Margin="5" Name="Car" IsReadOnly="True">
                         <DataGrid.Columns >
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
+                            
                             <DataGridTextColumn Header="Brand" Binding="{Binding Brand}"/>
                             <DataGridTextColumn Header="Model" Binding="{Binding Model}"/>
                             <DataGridTextColumn Header="BookingUser" Binding="{Binding BookingUser}"/>

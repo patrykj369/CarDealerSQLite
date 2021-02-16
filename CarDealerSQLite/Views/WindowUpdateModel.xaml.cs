@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
 
+
 namespace CarDealerSQLite
 {
     /// <summary>
@@ -26,7 +27,6 @@ namespace CarDealerSQLite
 
         public WindowUpdateModel(Model selectedModel, CarDealerContext dbContext)
         {
-
             InitializeComponent();
             this.dbContext = dbContext;
             UpdateModelGrid.DataContext = selectedModel;
@@ -43,7 +43,7 @@ namespace CarDealerSQLite
             BrandName.ItemsSource = brand.ToList();
             //CarBrand.ItemsSource = brand.ToList();
             //BrandName.Text = selectedModel.Brand.Name;
-            BrandName.SelectedIndex = 0;
+            BrandName.Text = selectedModel.Brand.Name;
         }
 
         private void UpdateItem(object s, RoutedEventArgs a)

@@ -118,8 +118,11 @@ namespace CarDealerSQLite
                 {
                     Id = car.Id,
                     Brand = car.Brand.Name,
+                    BrandID = car.Brand.Id,
                     Model = car.Model.Name,
+                    ModelID = car.Model.Id,
                     BookingUser = car.BookingUser.Name +" " + car.BookingUser.Surname,
+                    BookingUserID = car.BookingUser.Id,
                     ProductionYear = car.ProductionYear,
                     Course = car.Course,
                     Capacity = car.Capacity,
@@ -447,20 +450,24 @@ namespace CarDealerSQLite
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
 
 
-            if (result == MessageBoxResult.Yes)
-            {
-                selectedCar = (s as FrameworkElement).DataContext as Car;
+            //if (result == MessageBoxResult.Yes)
+            //{
+            var selectedCar2 = (s as FrameworkElement).DataContext.ToString();
+
+
+
+            //selectedCar = (s as FrameworkElement).DataContext as Car;
                 WindowUpdateCar updateWindow = new WindowUpdateCar(selectedCar, this.dbContext);
                 updateWindow.Show();
-            }
-            else
+           // }
+            /*else
             {
                 string messageEditionCancelled = "Edycja wycofana!";
                 string captionEditionCancelled = "Edycja";
                 MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
                 MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
                 MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
-            }
+            }*/
         }
 
         //-------działa--------------
@@ -538,7 +545,7 @@ namespace CarDealerSQLite
 
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
                 updateWindow.Show();
-                
+                selectedModel = new Model();
 
             }
             else
@@ -554,6 +561,7 @@ namespace CarDealerSQLite
 
         private void Reload(object s, RoutedEventArgs e)
         {
+            InitializeComponent();
             GetCustomers();
             GetBrand();
             GetModel();
