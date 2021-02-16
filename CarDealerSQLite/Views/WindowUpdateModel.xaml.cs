@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace CarDealerSQLite
 {
@@ -29,6 +29,8 @@ namespace CarDealerSQLite
         {
             InitializeComponent();
             this.dbContext = dbContext;
+            /*var thing = this.dbContext.Models.Find(selectedModel.Id);
+            if(thing.Id)*/
             UpdateModelGrid.DataContext = selectedModel;
             updateModel = selectedModel;
             
@@ -50,10 +52,11 @@ namespace CarDealerSQLite
         {
             //var tmp = BrandName.SelectedItem;
 
+            dbContext.Entry(updateModel).State = EntityState.Detached;
             char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
 
             //------Brand-------//
-
+            
             var model_brand = BrandName.SelectionBoxItem.ToString();
             string id_Brand = model_brand.Split(',')[0];
             int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
@@ -62,7 +65,6 @@ namespace CarDealerSQLite
 
             dbContext.Update(updateModel);
             dbContext.SaveChanges();
-            
             this.Close();
         }
 

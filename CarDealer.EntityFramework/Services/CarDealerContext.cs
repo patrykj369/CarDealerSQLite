@@ -16,6 +16,7 @@ namespace CarDealer.EntityFramework.Services
            
         }
 
+
         public DbSet<Car> Cars { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -29,6 +30,8 @@ namespace CarDealer.EntityFramework.Services
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>().HasData(GetCustomer());
+            //modelBuilder.Entity<Brand>().HasKey(b => b.Id);
+            //modelBuilder.Entity<Model>().HasKey(b => b.Id);
             modelBuilder.Entity<Brand>().HasMany(m => m.Models).WithOne(b => b.Brand);
             modelBuilder.Entity<Model>().HasOne(b => b.Brand).WithMany(m => m.Models);
             modelBuilder.Entity<Car>().HasKey(abc => new { abc.Id});

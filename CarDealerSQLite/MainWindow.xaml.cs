@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using CarDealer.EntityFramework.Models;
 using System.Data.Entity.SqlServer;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CarDealerSQLite
 {
@@ -92,16 +93,19 @@ namespace CarDealerSQLite
 
         private void GetCustomers()
         {
+            
             Customer.ItemsSource = dbContext.Customers.ToList();
         }
 
         private void GetBrand()
         {
+            
             Brand.ItemsSource = dbContext.Brands.ToList();
         }
 
         public void GetModel()
         {
+            
             Model.ItemsSource = dbContext.Models
                 .Select(model => new
                 {
@@ -113,6 +117,7 @@ namespace CarDealerSQLite
 
         private void GetCar()
         {
+            
             Car.ItemsSource = dbContext.Cars
                 .Select(car => new
                 {
@@ -502,18 +507,20 @@ namespace CarDealerSQLite
         
         private void UpdateModel(object s, RoutedEventArgs e)
         {
+            dbContext.Entry(selectedModel).State = EntityState.Detached;
+            //selectedModel = dbContext.Find(selectedModel.Id);
             string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
             string captionQuestion = "Edycja";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
             MessageBoxImage iconQuestion = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
-
+                         
 
             if (result == MessageBoxResult.Yes)
             {
                 string zmienna = ((s as FrameworkElement).DataContext).ToString();
 
-
+                
                 //----id------
                 char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
                 string tmp = zmienna.Split(',')[0];
@@ -535,18 +542,17 @@ namespace CarDealerSQLite
                 int position1 = (all1 - find1)-2;
                 string brand = tmp3.Substring(find1, position1);
 
-
                 var query = dbContext.Brands;
 
                 var query1 = query.Where(a => a.Name == brand).Single();
                             
                 Brand fullBrand = dbContext.Brands.Find(query1.Id);
                 selectedModel.Brand = fullBrand;
-
+                
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
                 updateWindow.Show();
-                selectedModel = new Model();
-
+                GetModel();
+                GetBrand();
             }
             else
             {
@@ -569,6 +575,7 @@ namespace CarDealerSQLite
             DisplayBrandList();
             DisplayModelList();
             DisplayBookingCustomersList();
+            
         }
     }
 }
