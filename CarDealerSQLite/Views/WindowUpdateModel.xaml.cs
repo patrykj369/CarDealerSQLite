@@ -29,8 +29,6 @@ namespace CarDealerSQLite
         {
             InitializeComponent();
             this.dbContext = dbContext;
-            /*var thing = this.dbContext.Models.Find(selectedModel.Id);
-            if(thing.Id)*/
             UpdateModelGrid.DataContext = selectedModel;
             updateModel = selectedModel;
             
@@ -43,15 +41,12 @@ namespace CarDealerSQLite
                         };
 
             BrandName.ItemsSource = brand.ToList();
-            //CarBrand.ItemsSource = brand.ToList();
-            //BrandName.Text = selectedModel.Brand.Name;
             BrandName.Text = selectedModel.Brand.Name;
         }
 
         private void UpdateItem(object s, RoutedEventArgs a)
         {
-            //var tmp = BrandName.SelectedItem;
-
+            
             dbContext.Entry(updateModel).State = EntityState.Detached;
             char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
 

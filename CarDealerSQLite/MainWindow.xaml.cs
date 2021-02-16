@@ -507,8 +507,8 @@ namespace CarDealerSQLite
         
         private void UpdateModel(object s, RoutedEventArgs e)
         {
+            //-----------------czysci-sledzenie-obiektu(pozwala-na-wielokrotna-edycje-tej-samej-pozycji)-----------------------
             dbContext.Entry(selectedModel).State = EntityState.Detached;
-            //selectedModel = dbContext.Find(selectedModel.Id);
             string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
             string captionQuestion = "Edycja";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
@@ -520,7 +520,6 @@ namespace CarDealerSQLite
             {
                 string zmienna = ((s as FrameworkElement).DataContext).ToString();
 
-                
                 //----id------
                 char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
                 string tmp = zmienna.Split(',')[0];
@@ -543,7 +542,6 @@ namespace CarDealerSQLite
                 string brand = tmp3.Substring(find1, position1);
 
                 var query = dbContext.Brands;
-
                 var query1 = query.Where(a => a.Name == brand).Single();
                             
                 Brand fullBrand = dbContext.Brands.Find(query1.Id);
@@ -551,8 +549,6 @@ namespace CarDealerSQLite
                 
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
                 updateWindow.Show();
-                GetModel();
-                GetBrand();
             }
             else
             {
