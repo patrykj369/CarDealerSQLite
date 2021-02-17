@@ -36,13 +36,7 @@ namespace CarDealerSQLite
         {
             this.dbContext = dbContext;
             InitializeComponent();
-            GetCustomers();
-            GetBrand();
-            GetModel();
-            GetCar();
-            DisplayBrandList();
-            DisplayModelList();
-            DisplayBookingCustomersList();
+            RefreashViews();
 
             //----------------------------------------------------------------------//
 
@@ -144,7 +138,7 @@ namespace CarDealerSQLite
         {
             dbContext.Customers.Add(newCustomer);
             dbContext.SaveChanges();
-            GetCustomers();
+            RefreashViews();
 
             string messageAdd = "Add new Customer: \n" + "ID: "+ newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " +newCustomer.Surname;
             string captionAdd = "Add new Customer";
@@ -156,8 +150,7 @@ namespace CarDealerSQLite
 
             AddNewItemGrid.DataContext = newCustomer;
 
-            DisplayBrandList();
-            DisplayBookingCustomersList();
+            RefreashViews();
         }
 
         private void AddCar(object s, RoutedEventArgs e)
@@ -192,8 +185,8 @@ namespace CarDealerSQLite
 
             dbContext.Cars.Add(newCar);
             dbContext.SaveChanges();
-            GetCar();
-            
+            RefreashViews();
+
             //-----------wyswietlanie komunikatow------------------//
 
             string messageAdd = "Add new Customer: \n" + "ID: " + newCar.Id + "; Model: " + newCar.Model.Name + "; Brand: " + newCar.Brand.Name;
@@ -222,7 +215,7 @@ namespace CarDealerSQLite
 
             dbContext.Models.Add(newModel);
             dbContext.SaveChanges();
-            GetModel();
+            RefreashViews();
 
             string messageAdd = "Add new Mode: \n" + "ID: " + newModel.Id + "; Name: " + newModel.Name;
             string captionAdd = "Add new Model";
@@ -233,8 +226,7 @@ namespace CarDealerSQLite
             newModel = new Model();
             AddNewModelGrid.DataContext = newModel;
 
-            DisplayBrandList();
-            DisplayModelList();
+            RefreashViews();
         }
 
         private void AddBrand(object s, RoutedEventArgs e)
@@ -252,7 +244,7 @@ namespace CarDealerSQLite
             newBrand = new Brand();
             AddNewBrandGrid.DataContext = newBrand;
 
-            DisplayBrandList();
+            RefreashViews();
         }
 
 
@@ -388,11 +380,44 @@ namespace CarDealerSQLite
             MessageBoxImage iconWarning = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
 
+            
+            Model modelToBeDelated = new Model();
+            dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
 
             if (result == MessageBoxResult.Yes)
             {
                 //Usuwanie z bazy
-                var modelToBeDelated = (s as FrameworkElement).DataContext as Model;
+                //var modelToBeDelated = (s as FrameworkElement).DataContext as Model;
+
+                string zmienna = ((s as FrameworkElement).DataContext).ToString();
+
+                //----id------
+                char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+                string tmp = zmienna.Split(',')[0];
+                int idAfterTrim = Int32.Parse(tmp.Trim(charsToTrim));
+                modelToBeDelated.Id = idAfterTrim;
+
+                //-------model-----
+                string tmp2 = zmienna.Split(',')[1];
+                int find = tmp2.IndexOf('=') + 2;
+                int all = tmp2.Length;
+                int position = (all - find);
+                string name = tmp2.Substring(find, position);
+                modelToBeDelated.Name = name;
+
+                //-------marka------
+                string tmp3 = zmienna.Split(',')[2];
+                int find1 = tmp3.IndexOf('=') + 2;
+                int all1 = tmp3.Length;
+                int position1 = (all1 - find1) - 2;
+                string brand = tmp3.Substring(find1, position1);
+
+                var query = dbContext.Brands;
+                var query1 = query.Where(a => a.Name == brand).Single();
+
+                Brand fullBrand = dbContext.Brands.Find(query1.Id);
+                modelToBeDelated.Brand = fullBrand;
+
                 dbContext.Models.Remove(modelToBeDelated);
                 dbContext.SaveChanges();
 
@@ -402,6 +427,7 @@ namespace CarDealerSQLite
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
                 MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
                 RefreashViews();
             }
             else
@@ -547,8 +573,7 @@ namespace CarDealerSQLite
 
                 
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
-                updateWindow.Show();
-                
+                updateWindow.Show();               
             }
             else
             {
