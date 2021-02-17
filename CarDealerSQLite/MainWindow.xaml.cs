@@ -546,9 +546,11 @@ namespace CarDealerSQLite
                             
                 Brand fullBrand = dbContext.Brands.Find(query1.Id);
                 selectedModel.Brand = fullBrand;
+
                 
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
                 updateWindow.Show();
+                
             }
             else
             {
@@ -573,5 +575,6 @@ namespace CarDealerSQLite
             DisplayBookingCustomersList();
             
         }
+
     }
 }

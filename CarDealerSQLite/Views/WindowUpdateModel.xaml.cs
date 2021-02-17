@@ -24,6 +24,7 @@ namespace CarDealerSQLite
         CarDealerContext dbContext;
 
         Model updateModel = new Model();
+        
 
         public WindowUpdateModel(Model selectedModel, CarDealerContext dbContext)
         {
@@ -42,6 +43,7 @@ namespace CarDealerSQLite
 
             BrandName.ItemsSource = brand.ToList();
             BrandName.Text = selectedModel.Brand.Name;
+           
         }
 
         private void UpdateItem(object s, RoutedEventArgs a)
@@ -57,11 +59,12 @@ namespace CarDealerSQLite
             int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
             Brand tmp_brand = dbContext.Brands.Find(idBeforeTrim_Brand);
             updateModel.Brand = tmp_brand;
-
+            
             dbContext.Update(updateModel);
-            dbContext.SaveChanges();
+            dbContext.SaveChanges();  
             this.Close();
         }
 
+        
     }
 }
