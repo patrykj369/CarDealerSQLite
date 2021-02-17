@@ -61,7 +61,7 @@ namespace CarDealerSQLite
             updateModel.Brand = tmp_brand;
             
             dbContext.Update(updateModel);
-            dbContext.SaveChanges();  
+            dbContext.SaveChanges();
             this.Close();
         }
 
