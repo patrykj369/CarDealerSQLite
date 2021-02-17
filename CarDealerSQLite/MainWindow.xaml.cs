@@ -294,7 +294,7 @@ namespace CarDealerSQLite
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
                 MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                GetCustomers();
+                RefreashViews();
             }
             else
             {
@@ -320,17 +320,17 @@ namespace CarDealerSQLite
             if (result == MessageBoxResult.Yes)
             {
                 //Usuwanie z bazy
-                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
-                dbContext.Customers.Remove(customerToBeDelated);
+                var caroBeDelated = (s as FrameworkElement).DataContext as Car;
+                dbContext.Cars.Remove(caroBeDelated);
                 dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string messageBoxText = "Usunięto: \n" + "ID: " + caroBeDelated.Id + "; Brand: " + caroBeDelated.Brand + "; Model: " + caroBeDelated.Model;
                 string caption = "Usuwanie";
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
                 MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                GetCustomers();
+                RefreashViews();
             }
             else
             {
@@ -366,7 +366,7 @@ namespace CarDealerSQLite
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
                 MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                GetCustomers();
+                RefreashViews();
             }
             else
             {
@@ -392,17 +392,17 @@ namespace CarDealerSQLite
             if (result == MessageBoxResult.Yes)
             {
                 //Usuwanie z bazy
-                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
-                dbContext.Customers.Remove(customerToBeDelated);
+                var modelToBeDelated = (s as FrameworkElement).DataContext as Model;
+                dbContext.Models.Remove(modelToBeDelated);
                 dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                string messageBoxText = "Usunięto: \n" + "ID: " + modelToBeDelated.Id + "; Name: " + modelToBeDelated.Name; ;
                 string caption = "Usuwanie";
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
                 MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                GetCustomers();
+                RefreashViews();
             }
             else
             {
@@ -458,8 +458,6 @@ namespace CarDealerSQLite
             if (result == MessageBoxResult.Yes)
             {
             var selectedCar2 = (s as FrameworkElement).DataContext.ToString();
-
-
 
                 selectedCar = (s as FrameworkElement).DataContext as Car;
                 WindowUpdateCar updateWindow = new WindowUpdateCar(selectedCar, this.dbContext);
@@ -574,6 +572,18 @@ namespace CarDealerSQLite
             DisplayModelList();
             DisplayBookingCustomersList();
             
+        }
+
+        private void RefreashViews()
+        {
+            InitializeComponent();
+            GetCustomers();
+            GetBrand();
+            GetModel();
+            GetCar();
+            DisplayBrandList();
+            DisplayModelList();
+            DisplayBookingCustomersList();
         }
 
     }
