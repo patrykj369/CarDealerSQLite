@@ -37,6 +37,7 @@ namespace CarDealerSQLite
         
         private void UpdateItem(object s, RoutedEventArgs a)
         {
+
             dbContext.Update(updateCustomer);
             dbContext.SaveChanges();
             this.Close();

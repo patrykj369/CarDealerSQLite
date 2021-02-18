@@ -68,9 +68,34 @@ namespace CarDealerSQLite
 
         private void UpdateItem(object s, RoutedEventArgs a)
         {
+            char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+            var car_brand = CarBrand.SelectionBoxItem.ToString();
+            string id_Brand = car_brand.Split(',')[0];
+            int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
+            Brand tmp_brand = dbContext.Brands.Find(idBeforeTrim_Brand);
+            updateCar.Brand = tmp_brand;
+
+            var car_model = CarModel.SelectionBoxItem.ToString();
+            string id_Model = car_model.Split(',')[0];
+            int idBeforeTrim_Model = Int32.Parse(id_Model.Trim(charsToTrim));
+            Model tmp_model = dbContext.Models.Find(idBeforeTrim_Model);
+            updateCar.Model = tmp_model;
+
+            var car_user = CarUser.SelectionBoxItem.ToString();
+            string id_User = car_user.Split(',')[0];
+            int idBeforeTrim_User = Int32.Parse(id_User.Trim(charsToTrim));
+            Customer tmp_user = dbContext.Customers.Find(idBeforeTrim_User);
+            updateCar.BookingUser= tmp_user;
+
             dbContext.Update(updateCar);
             dbContext.SaveChanges();
+
+            MainWindow window = new MainWindow(dbContext);
+            window.Show();
+
             this.Close();
+            
+
         }
 
     }

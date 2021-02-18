@@ -47,7 +47,10 @@ namespace CarDealerSQLite
             AddNewCarGrid.DataContext = newCar;
         }
 
-        public MainWindow() { }
+        public MainWindow() 
+        {
+
+        }
 
         public Brand brandzik()
         {
@@ -550,6 +553,7 @@ namespace CarDealerSQLite
 
                 WindowUpdateCar updateWindow = new WindowUpdateCar(selectedCar, this._dbContext);
                 updateWindow.Show();
+                this.Close();
             }
             else
             {
@@ -661,7 +665,7 @@ namespace CarDealerSQLite
             
         }
 
-        private void RefreashViews()
+        public void RefreashViews()
         {
             InitializeComponent();
             GetCustomers();
