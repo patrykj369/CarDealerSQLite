@@ -25,7 +25,7 @@ namespace CarDealerSQLite
     /// </summary>
     public partial class MainWindow : Window
     {
-        CarDealerContext dbContext;
+        CarDealerContext _dbContext { get; set; }
 
         Customer newCustomer = new Customer();
         Brand newBrand = new Brand();
@@ -34,8 +34,9 @@ namespace CarDealerSQLite
 
         public MainWindow(CarDealerContext dbContext)
         {
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
             InitializeComponent();
+           
             RefreashViews();
 
             //----------------------------------------------------------------------//
@@ -48,9 +49,15 @@ namespace CarDealerSQLite
 
         public MainWindow() { }
 
+        public Brand brandzik()
+        {
+            Brand brand = _dbContext.Brands.Find(1);
+            return brand;
+        }
+
         private void DisplayBrandList()
         {
-            var brand = from b in dbContext.Brands
+            var brand = from b in _dbContext.Brands
                         select new
                         {
                             Id = b.Id,
@@ -63,8 +70,8 @@ namespace CarDealerSQLite
 
         private void DisplayModelList()
         {
-            var models = from b in dbContext.Models
-                        select new
+            var models = from b in _dbContext.Models
+                         select new
                         {
                             Id = b.Id,
                             Name = b.Name
@@ -75,8 +82,8 @@ namespace CarDealerSQLite
 
         private void DisplayBookingCustomersList()
         {
-            var customers = from b in dbContext.Customers
-                         select new
+            var customers = from b in _dbContext.Customers
+                            select new
                          {
                              Id = b.Id,
                              Name = b.Name + " "+ b.Surname + "; " + b.Email + "; " + b.PostNumberr + " " + b.City     
@@ -88,19 +95,19 @@ namespace CarDealerSQLite
         private void GetCustomers()
         {
             
-            Customer.ItemsSource = dbContext.Customers.ToList();
+            Customer.ItemsSource = _dbContext.Customers.ToList();
         }
 
         private void GetBrand()
         {
             
-            Brand.ItemsSource = dbContext.Brands.ToList();
+            Brand.ItemsSource = _dbContext.Brands.ToList();
         }
 
         public void GetModel()
         {
             
-            Model.ItemsSource = dbContext.Models
+            Model.ItemsSource = _dbContext.Models
                 .Select(model => new
                 {
                     Id = model.Id,
@@ -112,7 +119,7 @@ namespace CarDealerSQLite
         private void GetCar()
         {
             
-            Car.ItemsSource = dbContext.Cars
+            Car.ItemsSource = _dbContext.Cars
                 .Select(car => new
                 {
                     Id = car.Id,
@@ -136,8 +143,8 @@ namespace CarDealerSQLite
 
         private void AddItem(object s, RoutedEventArgs e)
         {
-            dbContext.Customers.Add(newCustomer);
-            dbContext.SaveChanges();
+            _dbContext.Customers.Add(newCustomer);
+            _dbContext.SaveChanges();
             RefreashViews();
 
             string messageAdd = "Add new Customer: \n" + "ID: "+ newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " +newCustomer.Surname;
@@ -162,7 +169,7 @@ namespace CarDealerSQLite
             var model_brand = CarBrand.SelectionBoxItem.ToString();
             string id_Brand = model_brand.Split(',')[0];
             int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
-            Brand tmp_brand = dbContext.Brands.Find(idBeforeTrim_Brand);
+            Brand tmp_brand = _dbContext.Brands.Find(idBeforeTrim_Brand);
             newCar.Brand = tmp_brand;
 
             //------------Model----------------//
@@ -170,7 +177,7 @@ namespace CarDealerSQLite
             var model_Model = CarModel.SelectionBoxItem.ToString();
             string id_Model = model_Model.Split(',')[0];
             int idBeforeTrim_Model = Int32.Parse(id_Brand.Trim(charsToTrim));
-            Model tmp_Model = dbContext.Models.Find(idBeforeTrim_Model);
+            Model tmp_Model = _dbContext.Models.Find(idBeforeTrim_Model);
             newCar.Model = tmp_Model;
 
             //------BookingUser--------------//
@@ -178,13 +185,13 @@ namespace CarDealerSQLite
             var model_User = CarUser.SelectionBoxItem.ToString();
             string id_User = model_Model.Split(',')[0];
             int idBeforeTrim_User = Int32.Parse(id_User.Trim(charsToTrim));
-            Customer tmp_User = dbContext.Customers.Find(idBeforeTrim_User);
+            Customer tmp_User = _dbContext.Customers.Find(idBeforeTrim_User);
             newCar.BookingUser = tmp_User;
 
             //-----------dodawanie nowego samochodu, zapisywanie zmian, reload widoku--------//
 
-            dbContext.Cars.Add(newCar);
-            dbContext.SaveChanges();
+            _dbContext.Cars.Add(newCar);
+            _dbContext.SaveChanges();
             RefreashViews();
 
             //-----------wyswietlanie komunikatow------------------//
@@ -205,16 +212,16 @@ namespace CarDealerSQLite
 
         private void AddModel(object s, RoutedEventArgs e)
         {
-
+            _dbContext.Models.AsNoTracking();
             var model = BrandName.SelectionBoxItem.ToString();
             char[] charsToTrim = { '{', 'I', 'd', '=', ' '};
             string id = model.Split(',')[0];
             int idBeforeTrim = Int32.Parse(id.Trim(charsToTrim));
-            Brand tmp = dbContext.Brands.Find(idBeforeTrim);
+            Brand tmp = _dbContext.Brands.Find(idBeforeTrim);
             newModel.Brand = tmp;
 
-            dbContext.Models.Add(newModel);
-            dbContext.SaveChanges();
+            _dbContext.Models.Add(newModel).Reload();
+            _dbContext.SaveChanges();
             RefreashViews();
 
             string messageAdd = "Add new Mode: \n" + "ID: " + newModel.Id + "; Name: " + newModel.Name;
@@ -231,8 +238,9 @@ namespace CarDealerSQLite
 
         private void AddBrand(object s, RoutedEventArgs e)
         {
-            dbContext.Brands.Add(newBrand);
-            dbContext.SaveChanges();
+            _dbContext.Brands.AsNoTracking();
+            _dbContext.Brands.Add(newBrand);
+            _dbContext.SaveChanges();
             GetBrand();
             
             string messageAdd = "Add new Brand: \n" + "ID: " + newBrand.Id + "; Name: " + newBrand.Name;
@@ -277,8 +285,8 @@ namespace CarDealerSQLite
             {
                 //Usuwanie z bazy
                 var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
-                dbContext.Customers.Remove(customerToBeDelated);
-                dbContext.SaveChanges();
+                _dbContext.Customers.Remove(customerToBeDelated);
+                _dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
                 string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
@@ -312,12 +320,12 @@ namespace CarDealerSQLite
             if (result == MessageBoxResult.Yes)
             {
                 //Usuwanie z bazy
-                var caroBeDelated = (s as FrameworkElement).DataContext as Car;
-                dbContext.Cars.Remove(caroBeDelated);
-                dbContext.SaveChanges();
+                var carToBeDelated = (s as FrameworkElement).DataContext as Car;
+                _dbContext.Cars.Remove(carToBeDelated);
+                _dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + caroBeDelated.Id + "; Brand: " + caroBeDelated.Brand + "; Model: " + caroBeDelated.Model;
+                string messageBoxText = "Usunięto: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand + "; Model: " + carToBeDelated.Model;
                 string caption = "Usuwanie";
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
@@ -349,8 +357,8 @@ namespace CarDealerSQLite
             {
                 //Usuwanie z bazy
                 var brandToBeDelated = (s as FrameworkElement).DataContext as Brand;
-                dbContext.Brands.Remove(brandToBeDelated);
-                dbContext.SaveChanges();
+                _dbContext.Brands.Remove(brandToBeDelated);
+                _dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
                 string messageBoxText = "Usunięto: \n" + "ID: " + brandToBeDelated.Id + "; Name: " + brandToBeDelated.Name ;
@@ -382,7 +390,7 @@ namespace CarDealerSQLite
 
             
             Model modelToBeDelated = new Model();
-            dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
+            _dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
 
             if (result == MessageBoxResult.Yes)
             {
@@ -412,14 +420,15 @@ namespace CarDealerSQLite
                 int position1 = (all1 - find1) - 2;
                 string brand = tmp3.Substring(find1, position1);
 
-                var query = dbContext.Brands;
+                var query = _dbContext.Brands.AsNoTracking();
+
                 var query1 = query.Where(a => a.Name == brand).Single();
 
-                Brand fullBrand = dbContext.Brands.Find(query1.Id);
+                Brand fullBrand = _dbContext.Brands.Find(query1.Id);
                 modelToBeDelated.Brand = fullBrand;
 
-                dbContext.Models.Remove(modelToBeDelated);
-                dbContext.SaveChanges();
+                _dbContext.Models.Remove(modelToBeDelated);
+                _dbContext.SaveChanges();
 
                 //wiadomosc wyswietlana na ekranie
                 string messageBoxText = "Usunięto: \n" + "ID: " + modelToBeDelated.Id + "; Name: " + modelToBeDelated.Name; ;
@@ -427,7 +436,7 @@ namespace CarDealerSQLite
                 MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                 MessageBoxImage iconDeleted = MessageBoxImage.Information;
                 MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
+                _dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
                 RefreashViews();
             }
             else
@@ -457,7 +466,7 @@ namespace CarDealerSQLite
             if(result == MessageBoxResult.Yes)
             {
                 selectedCustomer = (s as FrameworkElement).DataContext as Customer;
-                WindowUpdateCustomer updateWindow = new WindowUpdateCustomer(selectedCustomer, this.dbContext);
+                WindowUpdateCustomer updateWindow = new WindowUpdateCustomer(selectedCustomer, this._dbContext);
                 updateWindow.Show();
             }else
             {
@@ -483,10 +492,63 @@ namespace CarDealerSQLite
 
             if (result == MessageBoxResult.Yes)
             {
-            var selectedCar2 = (s as FrameworkElement).DataContext.ToString();
+                var selectedCar2 = (s as FrameworkElement).DataContext.ToString();
 
-                selectedCar = (s as FrameworkElement).DataContext as Car;
-                WindowUpdateCar updateWindow = new WindowUpdateCar(selectedCar, this.dbContext);
+                //----id------
+                char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+                string tmp = selectedCar2.Split(',')[0];
+                int idAfterTrim = Int32.Parse(tmp.Trim(charsToTrim));
+                selectedCar.Id = idAfterTrim;
+
+                //----BrandId------
+                char[] charsToTrim1 = { '{', 'B', 'r', 'a', 'n', 'd', 'I', 'D', '=', ' ' };
+                string tmp1 = selectedCar2.Split(',')[2];
+                int idAfterTrim1 = Int32.Parse(tmp1.Trim(charsToTrim1));
+                selectedCar.BrandID = idAfterTrim1;
+                selectedCar.Brand = _dbContext.Brands.Find(idAfterTrim1);
+
+                //----ModelId------
+                char[] charsToTrim2 = { '{', 'M', 'o', 'd', 'e', 'l', 'I', 'D', '=', ' ' };
+                string tmp2 = selectedCar2.Split(',')[4];
+                int idAfterTrim2 = Int32.Parse(tmp2.Trim(charsToTrim2));
+                selectedCar.ModelID = idAfterTrim2;
+                selectedCar.Model = _dbContext.Models.Find(idAfterTrim2);
+
+                //----BookingUserId------
+                char[] charsToTrim3 = { '{', 'B', 'o', 'k', 'i', 'n', 'g', 'U', 's', 'e', 'r', 'I', 'D', '=', ' ' };
+                string tmp3 = selectedCar2.Split(',')[6];
+                int idAfterTrim3 = Int32.Parse(tmp3.Trim(charsToTrim3));
+                selectedCar.BookingUserID = idAfterTrim3;
+                selectedCar.BookingUser = _dbContext.Customers.Find(idAfterTrim3);
+                
+                //------DATA-DO-ZROBIENIA------
+                selectedCar.ProductionYear = new DateTime();
+
+                //----Course------
+                char[] charsToTrim4 = { '{', 'C', 'o', 'u', 'r', 's', 'e', '=', ' ' };
+                string tmp4 = selectedCar2.Split(',')[8];
+                string course = tmp4.Trim(charsToTrim4);
+                selectedCar.Course = course;
+
+                //----Capacity------
+                char[] charsToTrim5 = { '{', 'C', 'a', 'p', 'c', 'i', 't', 'y', '=', ' ' };
+                string tmp5 = selectedCar2.Split(',')[9];
+                string capacity = tmp5.Trim(charsToTrim5);
+                selectedCar.Capacity = capacity;
+
+                //----Registration------
+                char[] charsToTrim6 = { '{', 'R', 'e', 'g', 'i', 's', 't', 'r', 'a', 't', 'o', 'n', 'N', 'u', 'm', 'b', '=', ' ' };
+                string tmp6 = selectedCar2.Split(',')[10];
+                string registration = tmp6.Trim(charsToTrim6);
+                selectedCar.RegistrationNumber = registration;
+
+                //----Price------
+                char[] charsToTrim7 = { '{', 'P', 'r', 'i', 'c', 'e', '=', ' ' };
+                string tmp7 = selectedCar2.Split(',')[11];
+                string price = tmp7.Trim(charsToTrim7);
+                selectedCar.Price = price;
+
+                WindowUpdateCar updateWindow = new WindowUpdateCar(selectedCar, this._dbContext);
                 updateWindow.Show();
             }
             else
@@ -513,7 +575,7 @@ namespace CarDealerSQLite
             if (result == MessageBoxResult.Yes)
             {
                 selectedBrand = (s as FrameworkElement).DataContext as Brand;
-                WindowUpdateBrand updateWindow = new WindowUpdateBrand(selectedBrand, this.dbContext);
+                WindowUpdateBrand updateWindow = new WindowUpdateBrand(selectedBrand, this._dbContext);
                 updateWindow.Show();
             }
             else
@@ -532,14 +594,14 @@ namespace CarDealerSQLite
         private void UpdateModel(object s, RoutedEventArgs e)
         {
             //-----------------czysci-sledzenie-obiektu(pozwala-na-wielokrotna-edycje-tej-samej-pozycji)-----------------------
-            dbContext.Entry(selectedModel).State = EntityState.Detached;
+            _dbContext.Entry(selectedModel).State = EntityState.Detached;
             string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
             string captionQuestion = "Edycja";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
             MessageBoxImage iconQuestion = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
                          
-
+            
             if (result == MessageBoxResult.Yes)
             {
                 string zmienna = ((s as FrameworkElement).DataContext).ToString();
@@ -565,14 +627,14 @@ namespace CarDealerSQLite
                 int position1 = (all1 - find1)-2;
                 string brand = tmp3.Substring(find1, position1);
 
-                var query = dbContext.Brands;
+                var query = _dbContext.Brands;
                 var query1 = query.Where(a => a.Name == brand).Single();
                             
-                Brand fullBrand = dbContext.Brands.Find(query1.Id);
+                Brand fullBrand = _dbContext.Brands.Find(query1.Id);
                 selectedModel.Brand = fullBrand;
 
                 
-                WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this.dbContext);
+                WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this._dbContext);
                 updateWindow.Show();               
             }
             else

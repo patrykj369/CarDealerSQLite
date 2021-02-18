@@ -36,6 +36,7 @@ namespace CarDealer.EntityFramework.Services
             modelBuilder.Entity<Model>().HasOne(b => b.Brand).WithMany(m => m.Models);
             modelBuilder.Entity<Car>().HasKey(abc => new { abc.Id});
             modelBuilder.Entity<Brand>().HasData(GetBrand());
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -47,7 +48,7 @@ namespace CarDealer.EntityFramework.Services
                 new Customer {Id = 2, Name = "Marcin", Surname = "Najman", Email ="marcin.najman@gmail.com", City="Czestochowa", PhoneNumber= "666555444", PostNumberr="30-333" },
             };
         }
-
+        
         private Brand[] GetBrand()
         {
             return new Brand[]
