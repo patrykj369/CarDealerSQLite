@@ -51,13 +51,13 @@
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" Content="Brand" />
-                            <ComboBox x:Name="CarBrand" Grid.Row="0" Grid.Column="1" SelectedValue="{Binding Brand}" DisplayMemberPath="Name"/>
+                            <ComboBox x:Name="CarBrand" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Brand}"  DisplayMemberPath="Name"/>
 
                             <Label Grid.Row="1" Grid.Column="0" Content="Model" />
-                            <ComboBox x:Name="CarModel" Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Model}" DisplayMemberPath="Name"/>
+                            <ComboBox x:Name="CarModel" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Brand}"  DisplayMemberPath="Name"/>
 
                             <Label Grid.Row="2" Grid.Column="0" Content="Booking User" />
-                            <ComboBox x:Name="CarUser" Grid.Row="2" Grid.Column="1" SelectedValue="{Binding BookingUser}" DisplayMemberPath="Name"/>
+                            <ComboBox x:Name="CarUser" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Brand}"  DisplayMemberPath="Name"/>
 
                             <Label Grid.Row="3" Grid.Column="0" Content="Production Year" />
                             <TextBox x:Name="ProductionYear" Grid.Row="3" Grid.Column="1" Text="{Binding ProductionYear}"/>

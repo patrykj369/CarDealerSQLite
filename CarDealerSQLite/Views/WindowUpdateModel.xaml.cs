@@ -48,7 +48,7 @@ namespace CarDealerSQLite
 
         private void UpdateItem(object s, RoutedEventArgs a)
         {
-            dbContext.Models.AsNoTracking();
+            
             dbContext.Entry(updateModel).State = EntityState.Detached;
             char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
 

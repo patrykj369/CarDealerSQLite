@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarDealerSQLite
 {
@@ -30,6 +32,37 @@ namespace CarDealerSQLite
             this.dbContext = dbContext;
             UpdateCarGrid.DataContext = selectedCar;
             updateCar = selectedCar;
+
+           
+            var brand = from b in dbContext.Brands
+                        select new
+                        {
+                            Id = b.Id,
+                            Name = b.Name
+                        };
+
+            CarBrand.ItemsSource = brand.ToList();
+            CarBrand.Text = selectedCar.Brand.Name;
+
+            var model = from b in dbContext.Models
+                        select new
+                        {
+                            Id = b.Id,
+                            Name = b.Name
+                        };
+
+            CarModel.ItemsSource = model.ToList();
+            CarModel.Text = selectedCar.Model.Name;
+
+            var user = from b in dbContext.Customers
+                        select new
+                        {
+                            Id = b.Id,
+                            Name = b.Name + " " + b.Surname
+                        };
+
+            CarUser.ItemsSource = user.ToList();
+            CarUser.Text = selectedCar.BookingUser.Name + " " + selectedCar.BookingUser.Surname;
 
         }
 
