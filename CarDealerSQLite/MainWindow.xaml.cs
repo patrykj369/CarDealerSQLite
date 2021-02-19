@@ -17,6 +17,9 @@ using Microsoft.EntityFrameworkCore;
 using CarDealer.EntityFramework.Models;
 using System.Data.Entity.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using System.Diagnostics;
 
 namespace CarDealerSQLite
 {
@@ -32,6 +35,21 @@ namespace CarDealerSQLite
         Car newCar = new Car();
         Model newModel = new Model();
 
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x80000;
+        
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+        }
         public MainWindow(CarDealerContext dbContext)
         {
             _dbContext = dbContext;
@@ -654,15 +672,20 @@ namespace CarDealerSQLite
 
         private void Reload(object s, RoutedEventArgs e)
         {
-            InitializeComponent();
+            /*InitializeComponent();
             GetCustomers();
             GetBrand();
             GetModel();
             GetCar();
             DisplayBrandList();
             DisplayModelList();
-            DisplayBookingCustomersList();
-            
+            DisplayBookingCustomersList();*/
+
+            //System.Windows.Application.Current.Shutdown();
+            // from System.Windows.Forms.dll
+
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
 
         public void RefreashViews()

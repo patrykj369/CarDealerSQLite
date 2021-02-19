@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded"
         mc:Ignorable="d" Background="Azure"
-        Title="WindowUpdateBrand" Height="460" Width="540" WindowStartupLocation="CenterScreen">
+        Title="WindowUpdateBrand" WindowState="Maximized" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -16,7 +19,7 @@
 
         <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>

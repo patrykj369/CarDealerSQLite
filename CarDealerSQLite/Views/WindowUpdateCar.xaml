@@ -5,20 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="WindowUpdateCar" WindowState="Maximized" WindowStartupLocation="CenterScreen">
-
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Loaded="Window_Loaded"
+        Title="WindowUpdateCar" 
+        WindowState="Maximized" 
+        WindowStartupLocation="CenterScreen">
+        
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
 
         <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>

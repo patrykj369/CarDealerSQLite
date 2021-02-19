@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
+        
         Title="CarDealer" WindowState="Maximized" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
 
 
@@ -118,7 +119,7 @@
 
             </TabItem>
 
-            <TabItem Header="Car" Height="20" VerticalAlignment="Top">
+            <TabItem Header="Car" Height="20" VerticalAlignment="Top" Name="CarTab">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>

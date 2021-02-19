@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarDealerSQLite"
         mc:Ignorable="d" Background="Azure"
-        Title="WindowUpdateModel" Height="460" Width="540" WindowStartupLocation="CenterScreen">
+        Loaded="Window_Loaded"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Title="WindowUpdateModel" WindowState="Maximized" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -17,7 +20,7 @@
 
         <Label Grid.Row="0" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Content="Car Dealer"/>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace CarDealerSQLite
 {
@@ -24,10 +26,25 @@ namespace CarDealerSQLite
         CarDealerContext dbContext;
 
         Car updateCar = new Car();
+        
+        //zablkowoanie mozliwosci zamkniecia okna krzyzykiem
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x80000;
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var hwnd = new WindowInteropHelper(this).Handle;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+        }
 
         public WindowUpdateCar(Car selectedCar, CarDealerContext dbContext)
         {
-
             InitializeComponent();
             this.dbContext = dbContext;
             UpdateCarGrid.DataContext = selectedCar;
@@ -68,6 +85,7 @@ namespace CarDealerSQLite
 
         private void UpdateItem(object s, RoutedEventArgs a)
         {
+
             char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
             var car_brand = CarBrand.SelectionBoxItem.ToString();
             string id_Brand = car_brand.Split(',')[0];
@@ -91,11 +109,11 @@ namespace CarDealerSQLite
             dbContext.SaveChanges();
 
             MainWindow window = new MainWindow(dbContext);
+            window.CarTab.IsSelected = true;
             window.Show();
-
+            
             this.Close();
             
-
         }
 
     }

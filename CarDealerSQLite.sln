@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDealerSQLite", "CarDealerSQLite\CarDealerSQLite.csproj", "{C4893290-BAB1-46B7-B1BD-10D4C9FB1B2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealerSQLite", "CarDealerSQLite\CarDealerSQLite.csproj", "{C4893290-BAB1-46B7-B1BD-10D4C9FB1B2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDealer.EntityFramework", "CarDealer.EntityFramework\CarDealer.EntityFramework.csproj", "{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarDealer.EntityFramework", "CarDealer.EntityFramework\CarDealer.EntityFramework.csproj", "{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{C4893290-BAB1-46B7-B1BD-10D4C9FB1B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4893290-BAB1-46B7-B1BD-10D4C9FB1B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4893290-BAB1-46B7-B1BD-10D4C9FB1B2A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BADB1531-AFC1-4C9F-AF75-511DECF9F4D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
