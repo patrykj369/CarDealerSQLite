@@ -138,8 +138,6 @@
                             <DataGridTextColumn Header="Capacity" Binding="{Binding Capacity}"/>
                             <DataGridTextColumn Header="Registration number" Binding="{Binding RegistrationNumber}"/>
                             <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
-                            <DataGridTextColumn Header="Booking" Binding="{Binding Booking}"/>
-                            <DataGridTextColumn Header="Image" Binding="{Binding Image}"/>
 
                             <DataGridTemplateColumn Header="Delete Car">
                                 <DataGridTemplateColumn.CellTemplate>

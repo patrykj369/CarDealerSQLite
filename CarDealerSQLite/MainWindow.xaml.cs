@@ -587,7 +587,7 @@ namespace CarDealerSQLite
 
                 //------DATA-DO-ZROBIENIA------
                 char[] charsToTrim8 = { '{', 'P', 'r', 'o', 'd', 'u', 't', 'i', 'n', 'Y', 'e', 'a', 'c', '=', ' ' };
-                string tmp8 = selectedCar2.Split(',')[8];
+                string tmp8 = selectedCar2.Split(',')[7];
                 string productionYear = tmp8.Trim(charsToTrim8);
                 selectedCar.ProductionYear = productionYear;
 
@@ -610,7 +610,7 @@ namespace CarDealerSQLite
                 selectedCar.RegistrationNumber = registration;
 
                 //----Price------
-                char[] charsToTrim7 = { '{', 'P', 'r', 'i', 'c', 'e', '=', ' ' };
+                char[] charsToTrim7 = { '{', 'P', 'r', 'i', 'c', 'e', '=', ' ', '}' };
                 string tmp7 = selectedCar2.Split(',')[11];
                 string price = tmp7.Trim(charsToTrim7);
                 selectedCar.Price = price;
