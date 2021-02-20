@@ -304,18 +304,29 @@ namespace CarDealerSQLite
 
             if(result == MessageBoxResult.Yes)
             {
-                //Usuwanie z bazy
-                var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
-                _dbContext.Customers.Remove(customerToBeDelated);
-                _dbContext.SaveChanges();
+                try
+                {
+                    //Usuwanie z bazy
+                    var customerToBeDelated = (s as FrameworkElement).DataContext as Customer;
+                    _dbContext.Customers.Remove(customerToBeDelated);
+                    _dbContext.SaveChanges();
 
-                //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
-                string caption = "Usuwanie";
-                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
-                MessageBoxImage iconDeleted = MessageBoxImage.Information;
-                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                RefreashViews();
+                    //wiadomosc wyswietlana na ekranie
+                    string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                    string caption = "Usuwanie";
+                    MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                    MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                    RefreashViews();
+                }
+                catch (Exception)
+                {
+                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
+                    string captionDeleteCancelled = "Edition";
+                    MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
+                    MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
+                }
             }
             else
             {
@@ -340,18 +351,29 @@ namespace CarDealerSQLite
 
             if (result == MessageBoxResult.Yes)
             {
-                //Usuwanie z bazy
-                var carToBeDelated = (s as FrameworkElement).DataContext as Car;
-                _dbContext.Cars.Remove(carToBeDelated);
-                _dbContext.SaveChanges();
+                try
+                {
+                    //Usuwanie z bazy
+                    var carToBeDelated = (s as FrameworkElement).DataContext as Car;
+                    _dbContext.Cars.Remove(carToBeDelated);
+                    _dbContext.SaveChanges();
 
-                //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand + "; Model: " + carToBeDelated.Model;
-                string caption = "Usuwanie";
-                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
-                MessageBoxImage iconDeleted = MessageBoxImage.Information;
-                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                RefreashViews();
+                    //wiadomosc wyswietlana na ekranie
+                    string messageBoxText = "Usunięto: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand + "; Model: " + carToBeDelated.Model;
+                    string caption = "Usuwanie";
+                    MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                    MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                    RefreashViews();
+                }
+                catch (Exception)
+                {
+                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
+                    string captionDeleteCancelled = "Edition";
+                    MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
+                    MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
+                }
             }
             else
             {
@@ -376,18 +398,29 @@ namespace CarDealerSQLite
 
             if (result == MessageBoxResult.Yes)
             {
-                //Usuwanie z bazy
-                var brandToBeDelated = (s as FrameworkElement).DataContext as Brand;
-                _dbContext.Brands.Remove(brandToBeDelated);
-                _dbContext.SaveChanges();
+                try
+                {
+                    //Usuwanie z bazy
+                    var brandToBeDelated = (s as FrameworkElement).DataContext as Brand;
+                    _dbContext.Brands.Remove(brandToBeDelated);
+                    _dbContext.SaveChanges();
 
-                //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + brandToBeDelated.Id + "; Name: " + brandToBeDelated.Name ;
-                string caption = "Usuwanie";
-                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
-                MessageBoxImage iconDeleted = MessageBoxImage.Information;
-                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                RefreashViews();
+                    //wiadomosc wyswietlana na ekranie
+                    string messageBoxText = "Usunięto: \n" + "ID: " + brandToBeDelated.Id + "; Name: " + brandToBeDelated.Name;
+                    string caption = "Usuwanie";
+                    MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                    MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                    RefreashViews();
+                }
+                catch (Exception)
+                {
+                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
+                    string captionDeleteCancelled = "Edition";
+                    MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
+                    MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
+                }
             }
             else
             {
@@ -448,17 +481,27 @@ namespace CarDealerSQLite
                 Brand fullBrand = _dbContext.Brands.Find(query1.Id);
                 modelToBeDelated.Brand = fullBrand;
 
-                _dbContext.Models.Remove(modelToBeDelated);
-                _dbContext.SaveChanges();
+                try
+                {
+                    _dbContext.Models.Remove(modelToBeDelated);
+                    _dbContext.SaveChanges();
 
-                //wiadomosc wyswietlana na ekranie
-                string messageBoxText = "Usunięto: \n" + "ID: " + modelToBeDelated.Id + "; Name: " + modelToBeDelated.Name; ;
-                string caption = "Usuwanie";
-                MessageBoxButton buttonDeleted = MessageBoxButton.OK;
-                MessageBoxImage iconDeleted = MessageBoxImage.Information;
-                MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
-                _dbContext.Entry(modelToBeDelated).State = EntityState.Detached;
-                RefreashViews();
+                    //wiadomosc wyswietlana na ekranie
+                    string messageBoxText = "Usunięto: \n" + "ID: " + modelToBeDelated.Id + "; Name: " + modelToBeDelated.Name; ;
+                    string caption = "Usuwanie";
+                    MessageBoxButton buttonDeleted = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleted = MessageBoxImage.Information;
+                    MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
+                    RefreashViews();
+                }
+                catch (Exception)
+                {
+                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
+                    string captionDeleteCancelled = "Edition";
+                    MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
+                    MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
+                    MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
+                }
             }
             else
             {
