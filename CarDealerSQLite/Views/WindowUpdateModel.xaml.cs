@@ -77,10 +77,29 @@ namespace CarDealerSQLite
             int idBeforeTrim_Brand = Int32.Parse(id_Brand.Trim(charsToTrim));
             Brand tmp_brand = dbContext.Brands.Find(idBeforeTrim_Brand);
             updateModel.Brand = tmp_brand;
+
+            try
+            {
+                dbContext.Update(updateModel);
+                dbContext.SaveChanges();
+            }
+            catch(Exception)
+            {
+                string messageEditionCancelled = "This item cannot be edited, please try restarting the application!";
+                string captionEditionCancelled = "Edition";
+                MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
+                MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
+                MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
+            }
+            finally
+            {
+                MainWindow window = new MainWindow(dbContext);
+                window.ModelTab.IsSelected = true;
+                window.Show();
+                this.Close();
+            }
             
-            dbContext.Update(updateModel);
-            dbContext.SaveChanges();
-            this.Close();
+            
         }
 
         

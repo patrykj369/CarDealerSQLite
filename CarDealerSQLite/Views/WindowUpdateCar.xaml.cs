@@ -105,15 +105,28 @@ namespace CarDealerSQLite
             Customer tmp_user = dbContext.Customers.Find(idBeforeTrim_User);
             updateCar.BookingUser= tmp_user;
 
-            dbContext.Update(updateCar);
-            dbContext.SaveChanges();
+            try
+            {
+                dbContext.Update(updateCar);
+                dbContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                string messageEditionCancelled = "This item cannot be edited, please try restarting the application!";
+                string captionEditionCancelled = "Edition";
+                MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
+                MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
+                MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
+            }
+            finally
+            {
+                MainWindow window = new MainWindow(dbContext);
+                window.CarTab.IsSelected = true;
+                window.Show();
+                this.Close();
 
-            MainWindow window = new MainWindow(dbContext);
-            window.CarTab.IsSelected = true;
-            window.Show();
-            
-            this.Close();
-            
+            }
+
         }
 
     }

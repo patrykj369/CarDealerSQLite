@@ -489,7 +489,9 @@ namespace CarDealerSQLite
                 selectedCustomer = (s as FrameworkElement).DataContext as Customer;
                 WindowUpdateCustomer updateWindow = new WindowUpdateCustomer(selectedCustomer, this._dbContext);
                 updateWindow.Show();
-            }else
+                this.Close();
+            }
+            else
             {
                 string messageEditionCancelled = "Edycja wycofana!";
                 string captionEditionCancelled = "Edycja";
@@ -599,6 +601,7 @@ namespace CarDealerSQLite
                 selectedBrand = (s as FrameworkElement).DataContext as Brand;
                 WindowUpdateBrand updateWindow = new WindowUpdateBrand(selectedBrand, this._dbContext);
                 updateWindow.Show();
+                this.Close();
             }
             else
             {
@@ -657,7 +660,8 @@ namespace CarDealerSQLite
 
                 
                 WindowUpdateModel updateWindow = new WindowUpdateModel(selectedModel, this._dbContext);
-                updateWindow.Show();               
+                updateWindow.Show();
+                this.Close();
             }
             else
             {
@@ -672,20 +676,17 @@ namespace CarDealerSQLite
 
         private void Reload(object s, RoutedEventArgs e)
         {
-            /*InitializeComponent();
+            InitializeComponent();
             GetCustomers();
             GetBrand();
             GetModel();
             GetCar();
             DisplayBrandList();
             DisplayModelList();
-            DisplayBookingCustomersList();*/
+            DisplayBookingCustomersList();
 
             //System.Windows.Application.Current.Shutdown();
-            // from System.Windows.Forms.dll
 
-            Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
         }
 
         public void RefreashViews()

@@ -5,6 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Car Dealer.ico</ApplicationIcon>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +17,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="WiX" Version="3.11.2" />
+    <PackageReference Include="WiX.Toolset.UnofficialFork" Version="3.11.2" />
   </ItemGroup>
 
   <ItemGroup>
