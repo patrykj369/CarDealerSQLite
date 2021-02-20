@@ -202,26 +202,38 @@ namespace CarDealerSQLite
             Customer tmp_User = _dbContext.Customers.Find(idBeforeTrim_User);
             newCar.BookingUser = tmp_User;
 
-            //-----------dodawanie nowego samochodu, zapisywanie zmian, reload widoku--------//
+            if (newCar.Model.Name != null && newCar.Brand.Name != null && newCar.BookingUser.Name != null && newCar.Capacity != null && newCar.Course != null && newCar.Price != null && newCar.ProductionYear != null && newCar.RegistrationNumber != null && newCar.ProductionYear.Length == 4)
+            {
+                //-----------dodawanie nowego samochodu, zapisywanie zmian, reload widoku--------//
 
-            _dbContext.Cars.Add(newCar);
-            _dbContext.SaveChanges();
-            RefreashViews();
+                _dbContext.Cars.Add(newCar);
+                _dbContext.SaveChanges();
+                RefreashViews();
 
-            //-----------wyswietlanie komunikatow------------------//
+                //-----------wyswietlanie komunikatow------------------//
 
-            string messageAdd = "Add new Customer: \n" + "ID: " + newCar.Id + "; Model: " + newCar.Model.Name + "; Brand: " + newCar.Brand.Name;
-            string captionAdd = "Add new Customer";
-            MessageBoxButton buttonAdd = MessageBoxButton.OK;
-            MessageBoxImage iconAdd = MessageBoxImage.Information;
-            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+                string messageAdd = "Add new Customer: \n" + "ID: " + newCar.Id + "; Model: " + newCar.Model.Name + "; Brand: " + newCar.Brand.Name;
+                string captionAdd = "Add new Customer";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
 
-            //-------------czyszczenie formularza---------------//
+                //-------------czyszczenie formularza---------------//
 
-            clearTextBox(AddNewCarGrid);
-            newCar = new Car();
-            AddNewCarGrid.DataContext = newCar;
-      
+                clearTextBox(AddNewCarGrid);
+                newCar = new Car();
+                AddNewCarGrid.DataContext = newCar;
+
+            }
+            else
+            {
+                string messageAdd = "The required data has not been completed!";
+                string captionAdd = "Incorrect data!";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            }
+
         }
 
         private void AddModel(object s, RoutedEventArgs e)
