@@ -248,8 +248,7 @@ namespace CarDealerSQLite
         private void AddModel(object s, RoutedEventArgs e)
         {
             
-            if (newModel.Name != null && newModel.Brand.Name != null)
-            {
+            
                 var model = BrandName.SelectionBoxItem.ToString();
                 char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
                 string id = model.Split(',')[0];
@@ -257,6 +256,8 @@ namespace CarDealerSQLite
                 Brand tmp = _dbContext.Brands.Find(idBeforeTrim);
                 newModel.Brand = tmp;
 
+            if (newModel.Name != null && newModel.Brand != null)
+            {
                 _dbContext.Models.Add(newModel).Reload();
                 _dbContext.SaveChanges();
                 RefreashViews();
