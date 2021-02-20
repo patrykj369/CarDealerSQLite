@@ -35,6 +35,9 @@ namespace CarDealerSQLite
         Car newCar = new Car();
         Model newModel = new Model();
 
+        /// <summary>
+        /// Konstruktor jednoargumentowy
+        /// </summary>
         public MainWindow(CarDealerContext dbContext)
         {
             _dbContext = dbContext;
@@ -50,11 +53,17 @@ namespace CarDealerSQLite
             AddNewCarGrid.DataContext = newCar;
         }
 
+        /// <summary>
+        /// Konstruktor domyślny
+        /// </summary>
         public MainWindow() 
         {
 
         }
 
+        /// <summary>
+        /// Publiczna metoda zwracajaca obiekt typu Brand
+        /// </summary>
         public Brand brandzik()
         {
             Brand brand = _dbContext.Brands.Find(1);
@@ -110,7 +119,7 @@ namespace CarDealerSQLite
             Brand.ItemsSource = _dbContext.Brands.ToList();
         }
 
-        public void GetModel()
+        private void GetModel()
         {
             
             Model.ItemsSource = _dbContext.Models

@@ -6,12 +6,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 namespace CarDealerSQLite
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Klasa App
     /// </summary>
     public partial class App : Application
     {
         private ServiceProvider serviceProvider;
 
+        /// <summary>
+        /// Konstruktor klasy App
+        /// </summary>
         public App()
         {
             ServiceCollection services = new ServiceCollection();

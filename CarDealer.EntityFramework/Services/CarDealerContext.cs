@@ -6,9 +6,14 @@ using System.Text;
 
 namespace CarDealer.EntityFramework.Services
 {
+    /// <summary>
+    /// Publiczna klasa CarDealerContext
+    /// </summary>
     public class CarDealerContext : DbContext
     {
-        
+        /// <summary>
+        /// Publiczna konstruktor klasy CarDealerContext
+        /// </summary>
         public CarDealerContext(DbContextOptions<CarDealerContext> options) : base(options)
         {
             
@@ -16,14 +21,29 @@ namespace CarDealer.EntityFramework.Services
            
         }
 
+        /// <summary>
+        /// Publiczna wlasciwosc Cars
+        /// </summary>
         public DbSet<Car> Cars { get; set; }
 
+        /// <summary>
+        /// Publiczna wlasciwosc Users
+        /// </summary>
         public DbSet<User> Users { get; set; }
 
+        /// <summary>
+        /// Publiczna wlasciwosc Customers
+        /// </summary>
         public DbSet<Customer> Customers { get; set; }
 
+        /// <summary>
+        /// Publiczna wlasciwosc Model
+        /// </summary>
         public DbSet<Model> Models { get; set; }
 
+        /// <summary>
+        /// Publiczna wlasciwosc Brands
+        /// </summary>
         public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -19,7 +19,7 @@ using System.Windows.Interop;
 namespace CarDealerSQLite
 {
     /// <summary>
-    /// Interaction logic for WindowUpdateCustomer.xaml
+    /// Publiczny klasa WindowUpdateCar
     /// </summary>
     public partial class WindowUpdateCar : Window
     {
@@ -43,6 +43,9 @@ namespace CarDealerSQLite
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
 
+        /// <summary>
+        /// Publiczny konstruktor klasy WindowUpdateCar
+        /// </summary>
         public WindowUpdateCar(Car selectedCar, CarDealerContext dbContext)
         {
             InitializeComponent();

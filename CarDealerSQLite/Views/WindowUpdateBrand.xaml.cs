@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace CarDealerSQLite
 {
     /// <summary>
-    /// Interaction logic for WindowUpdateCustomer.xaml
+    /// Publiczna klasa WindowUpdateBrand
     /// </summary>
     public partial class WindowUpdateBrand : Window
     {
@@ -40,6 +40,10 @@ namespace CarDealerSQLite
             var hwnd = new WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
         }
+
+        /// <summary>
+        /// Publiczny konstruktor klasy WindowUpdateBrand
+        /// </summary>
         public WindowUpdateBrand(Brand selectedCar, CarDealerContext dbContext)
         {
 
