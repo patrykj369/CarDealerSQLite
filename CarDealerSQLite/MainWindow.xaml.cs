@@ -238,47 +238,69 @@ namespace CarDealerSQLite
 
         private void AddModel(object s, RoutedEventArgs e)
         {
-            _dbContext.Models.AsNoTracking();
-            var model = BrandName.SelectionBoxItem.ToString();
-            char[] charsToTrim = { '{', 'I', 'd', '=', ' '};
-            string id = model.Split(',')[0];
-            int idBeforeTrim = Int32.Parse(id.Trim(charsToTrim));
-            Brand tmp = _dbContext.Brands.Find(idBeforeTrim);
-            newModel.Brand = tmp;
+            
+            if (newModel.Name != null && newModel.Brand.Name != null)
+            {
+                var model = BrandName.SelectionBoxItem.ToString();
+                char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+                string id = model.Split(',')[0];
+                int idBeforeTrim = Int32.Parse(id.Trim(charsToTrim));
+                Brand tmp = _dbContext.Brands.Find(idBeforeTrim);
+                newModel.Brand = tmp;
 
-            _dbContext.Models.Add(newModel).Reload();
-            _dbContext.SaveChanges();
-            RefreashViews();
+                _dbContext.Models.Add(newModel).Reload();
+                _dbContext.SaveChanges();
+                RefreashViews();
 
-            string messageAdd = "Add new Mode: \n" + "ID: " + newModel.Id + "; Name: " + newModel.Name;
-            string captionAdd = "Add new Model";
-            MessageBoxButton buttonAdd = MessageBoxButton.OK;
-            MessageBoxImage iconAdd = MessageBoxImage.Information;
-            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
-            clearTextBox(AddNewModelGrid);
-            newModel = new Model();
-            AddNewModelGrid.DataContext = newModel;
-
-            RefreashViews();
+                string messageAdd = "Add new Mode: \n" + "ID: " + newModel.Id + "; Name: " + newModel.Name;
+                string captionAdd = "Add new Model";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+                clearTextBox(AddNewModelGrid);
+                newModel = new Model();
+                AddNewModelGrid.DataContext = newModel;
+                RefreashViews();
+            }
+            else
+            {
+                string messageAdd = "The required data has not been completed!";
+                string captionAdd = "Incorrect data!";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            }
         }
 
         private void AddBrand(object s, RoutedEventArgs e)
         {
-            _dbContext.Brands.AsNoTracking();
-            _dbContext.Brands.Add(newBrand);
-            _dbContext.SaveChanges();
-            GetBrand();
-            
-            string messageAdd = "Add new Brand: \n" + "ID: " + newBrand.Id + "; Name: " + newBrand.Name;
-            string captionAdd = "Add new Brand";
-            MessageBoxButton buttonAdd = MessageBoxButton.OK;
-            MessageBoxImage iconAdd = MessageBoxImage.Information;
-            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
-            clearTextBox(AddNewBrandGrid);
-            newBrand = new Brand();
-            AddNewBrandGrid.DataContext = newBrand;
+            if(newBrand.Name != null)
+            {
+                _dbContext.Brands.AsNoTracking();
+                _dbContext.Brands.Add(newBrand);
+                _dbContext.SaveChanges();
+                GetBrand();
 
-            RefreashViews();
+                string messageAdd = "Add new Brand: \n" + "ID: " + newBrand.Id + "; Name: " + newBrand.Name;
+                string captionAdd = "Add new Brand";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+                clearTextBox(AddNewBrandGrid);
+                newBrand = new Brand();
+                AddNewBrandGrid.DataContext = newBrand;
+
+                RefreashViews();
+
+            }
+            else
+            {
+                string messageAdd = "The required data has not been completed!";
+                string captionAdd = "Incorrect data!";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            }
         }
 
 
