@@ -154,9 +154,7 @@ namespace CarDealerSQLite
                     Course = car.Course,
                     Capacity = car.Capacity,
                     RegistrationNumber = car.RegistrationNumber,
-                    Price = car.Price,
-                    Booking = car.Booking,
-                    Image = car.Image
+                    Price = car.Price
                 }).ToList();
         }
         
@@ -197,7 +195,7 @@ namespace CarDealerSQLite
 
             var model_Model = CarModel.SelectionBoxItem.ToString();
             string id_Model = model_Model.Split(',')[0];
-            int idBeforeTrim_Model = Int32.Parse(id_Brand.Trim(charsToTrim));
+            int idBeforeTrim_Model = Int32.Parse(id_Model.Trim(charsToTrim));
             Model tmp_Model = _dbContext.Models.Find(idBeforeTrim_Model);
             newCar.Model = tmp_Model;
 
@@ -295,8 +293,8 @@ namespace CarDealerSQLite
         private void DeleteCustomer(object s, RoutedEventArgs e)
         {
 
-            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
-            string captionWarning = "Usuwanie";
+            string messageWarning = "Are you sure you want to delete this item? The operation is irreversible!";
+            string captionWarning = "Removal";
             MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
             MessageBoxImage iconWarning = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
@@ -312,8 +310,8 @@ namespace CarDealerSQLite
                     _dbContext.SaveChanges();
 
                     //wiadomosc wyswietlana na ekranie
-                    string messageBoxText = "Usunięto: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
-                    string caption = "Usuwanie";
+                    string messageBoxText = "Removed: \n" + "ID: " + customerToBeDelated.Id + "; Name: " + customerToBeDelated.Name + "; Surname: " + customerToBeDelated.Surname;
+                    string caption = "Removal";
                     MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                     MessageBoxImage iconDeleted = MessageBoxImage.Information;
                     MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
@@ -321,8 +319,8 @@ namespace CarDealerSQLite
                 }
                 catch (Exception)
                 {
-                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
-                    string captionDeleteCancelled = "Edition";
+                    string messageDeleteCancelled = "This item cannot be deleted, please try restarting the application!";
+                    string captionDeleteCancelled = "Removal";
                     MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
                     MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
                     MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
@@ -330,8 +328,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageInfo = "Usuwanie anulowane!";
-                string captionInfo = "Usuwanie";
+                string messageInfo = "Delete canceled!";
+                string captionInfo = "Removal";
                 MessageBoxButton buttonInfo = MessageBoxButton.OK;
                 MessageBoxImage iconInfo = MessageBoxImage.Warning;
                 MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
@@ -342,8 +340,8 @@ namespace CarDealerSQLite
         private void DeleteCar(object s, RoutedEventArgs e)
         {
 
-            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
-            string captionWarning = "Usuwanie";
+            string messageWarning = "Are you sure you want to delete this item? The operation is irreversible!";
+            string captionWarning = "Removal";
             MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
             MessageBoxImage iconWarning = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
@@ -359,8 +357,8 @@ namespace CarDealerSQLite
                     _dbContext.SaveChanges();
 
                     //wiadomosc wyswietlana na ekranie
-                    string messageBoxText = "Usunięto: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand + "; Model: " + carToBeDelated.Model;
-                    string caption = "Usuwanie";
+                    string messageBoxText = "Removed: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand + "; Model: " + carToBeDelated.Model;
+                    string caption = "Removal";
                     MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                     MessageBoxImage iconDeleted = MessageBoxImage.Information;
                     MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
@@ -368,8 +366,8 @@ namespace CarDealerSQLite
                 }
                 catch (Exception)
                 {
-                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
-                    string captionDeleteCancelled = "Edition";
+                    string messageDeleteCancelled = "This item cannot be deleted, please try restarting the application!";
+                    string captionDeleteCancelled = "Removal";
                     MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
                     MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
                     MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
@@ -377,8 +375,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageInfo = "Usuwanie anulowane!";
-                string captionInfo = "Usuwanie";
+                string messageInfo = "Delete canceled!";
+                string captionInfo = "Removal";
                 MessageBoxButton buttonInfo = MessageBoxButton.OK;
                 MessageBoxImage iconInfo = MessageBoxImage.Warning;
                 MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
@@ -389,8 +387,8 @@ namespace CarDealerSQLite
         private void DeleteBrand(object s, RoutedEventArgs e)
         {
 
-            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
-            string captionWarning = "Usuwanie";
+            string messageWarning = "Are you sure you want to delete this item? The operation is irreversible!";
+            string captionWarning = "Removal";
             MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
             MessageBoxImage iconWarning = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
@@ -406,8 +404,8 @@ namespace CarDealerSQLite
                     _dbContext.SaveChanges();
 
                     //wiadomosc wyswietlana na ekranie
-                    string messageBoxText = "Usunięto: \n" + "ID: " + brandToBeDelated.Id + "; Name: " + brandToBeDelated.Name;
-                    string caption = "Usuwanie";
+                    string messageBoxText = "Removed: \n" + "ID: " + brandToBeDelated.Id + "; Name: " + brandToBeDelated.Name;
+                    string caption = "Removal";
                     MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                     MessageBoxImage iconDeleted = MessageBoxImage.Information;
                     MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
@@ -415,8 +413,8 @@ namespace CarDealerSQLite
                 }
                 catch (Exception)
                 {
-                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
-                    string captionDeleteCancelled = "Edition";
+                    string messageDeleteCancelled = "This item cannot be deleted, please try restarting the application!";
+                    string captionDeleteCancelled = "Removal";
                     MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
                     MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
                     MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
@@ -424,8 +422,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageInfo = "Usuwanie anulowane!";
-                string captionInfo = "Usuwanie";
+                string messageInfo = "Delete canceled!";
+                string captionInfo = "Removal";
                 MessageBoxButton buttonInfo = MessageBoxButton.OK;
                 MessageBoxImage iconInfo = MessageBoxImage.Warning;
                 MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
@@ -436,8 +434,8 @@ namespace CarDealerSQLite
         private void DeleteModel(object s, RoutedEventArgs e)
         {
 
-            string messageWarning = "Czy na pewno chcesz usunać ten obiekt? Operacja jest nieodwracalna!";
-            string captionWarning = "Usuwanie";
+            string messageWarning = "Are you sure you want to delete this item? The operation is irreversible!";
+            string captionWarning = "Removal";
             MessageBoxButton buttonWarning = MessageBoxButton.YesNo;
             MessageBoxImage iconWarning = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageWarning, captionWarning, buttonWarning, iconWarning);
@@ -487,8 +485,8 @@ namespace CarDealerSQLite
                     _dbContext.SaveChanges();
 
                     //wiadomosc wyswietlana na ekranie
-                    string messageBoxText = "Usunięto: \n" + "ID: " + modelToBeDelated.Id + "; Name: " + modelToBeDelated.Name; ;
-                    string caption = "Usuwanie";
+                    string messageBoxText = "Removed: \n" + "ID: " + modelToBeDelated.Id + "; Name: " + modelToBeDelated.Name; ;
+                    string caption = "Removal";
                     MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                     MessageBoxImage iconDeleted = MessageBoxImage.Information;
                     MessageBox.Show(messageBoxText, caption, buttonDeleted, iconDeleted);
@@ -496,8 +494,8 @@ namespace CarDealerSQLite
                 }
                 catch (Exception)
                 {
-                    string messageDeleteCancelled = "This item cannot be edited, please try restarting the application!";
-                    string captionDeleteCancelled = "Edition";
+                    string messageDeleteCancelled = "This item cannot be deleted, please try restarting the application!";
+                    string captionDeleteCancelled = "Removal";
                     MessageBoxButton buttonDeleteCancelled = MessageBoxButton.OK;
                     MessageBoxImage iconDeleteCancelled = MessageBoxImage.Warning;
                     MessageBoxResult resultDeleteCancelled = MessageBox.Show(messageDeleteCancelled, captionDeleteCancelled, buttonDeleteCancelled, iconDeleteCancelled);
@@ -505,8 +503,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageInfo = "Usuwanie anulowane!";
-                string captionInfo = "Usuwanie";
+                string messageInfo = "Delete canceled!";
+                string captionInfo = "Removal";
                 MessageBoxButton buttonInfo = MessageBoxButton.OK;
                 MessageBoxImage iconInfo = MessageBoxImage.Warning;
                 MessageBox.Show(messageInfo, captionInfo, buttonInfo, iconInfo);
@@ -520,8 +518,8 @@ namespace CarDealerSQLite
         Customer selectedCustomer = new Customer();
         private void UpdateCustomer(object s, RoutedEventArgs e)
         {
-            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
-            string captionQuestion = "Edycja";
+            string messageQuestion = "Are you sure you want to edit the selected item?";
+            string captionQuestion = "Edition";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
             MessageBoxImage iconQuestion = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
@@ -536,8 +534,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageEditionCancelled = "Edycja wycofana!";
-                string captionEditionCancelled = "Edycja";
+                string messageEditionCancelled = "Edition cancelled!";
+                string captionEditionCancelled = "Edition";
                 MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
                 MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
                 MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
@@ -549,8 +547,8 @@ namespace CarDealerSQLite
         Car selectedCar = new Car();
         private void UpdateCar(object s, RoutedEventArgs e)
         {
-            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
-            string captionQuestion = "Edycja";
+            string messageQuestion = "Are you sure you want to edit the selected item?";
+            string captionQuestion = "Edition";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
             MessageBoxImage iconQuestion = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
@@ -586,9 +584,12 @@ namespace CarDealerSQLite
                 int idAfterTrim3 = Int32.Parse(tmp3.Trim(charsToTrim3));
                 selectedCar.BookingUserID = idAfterTrim3;
                 selectedCar.BookingUser = _dbContext.Customers.Find(idAfterTrim3);
-                
+
                 //------DATA-DO-ZROBIENIA------
-                selectedCar.ProductionYear = new DateTime();
+                char[] charsToTrim8 = { '{', 'P', 'r', 'o', 'd', 'u', 't', 'i', 'n', 'Y', 'e', 'a', 'c', '=', ' ' };
+                string tmp8 = selectedCar2.Split(',')[8];
+                string productionYear = tmp8.Trim(charsToTrim8);
+                selectedCar.ProductionYear = productionYear;
 
                 //----Course------
                 char[] charsToTrim4 = { '{', 'C', 'o', 'u', 'r', 's', 'e', '=', ' ' };
@@ -620,8 +621,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageEditionCancelled = "Edycja wycofana!";
-                string captionEditionCancelled = "Edycja";
+                string messageEditionCancelled = "Edition cancelled!";
+                string captionEditionCancelled = "Edition";
                 MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
                 MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
                 MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
@@ -632,8 +633,8 @@ namespace CarDealerSQLite
         Brand selectedBrand = new Brand();
         private void UpdateBrand(object s, RoutedEventArgs e)
         {
-            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
-            string captionQuestion = "Edycja";
+            string messageQuestion = "Are you sure you want to edit the selected item?";
+            string captionQuestion = "Edition";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
             MessageBoxImage iconQuestion = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
@@ -648,8 +649,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageEditionCancelled = "Edycja wycofana!";
-                string captionEditionCancelled = "Edycja";
+                string messageEditionCancelled = "Edition cancelled!";
+                string captionEditionCancelled = "Edition";
                 MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
                 MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
                 MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);
@@ -663,8 +664,8 @@ namespace CarDealerSQLite
         {
             //-----------------czysci-sledzenie-obiektu(pozwala-na-wielokrotna-edycje-tej-samej-pozycji)-----------------------
             _dbContext.Entry(selectedModel).State = EntityState.Detached;
-            string messageQuestion = "Czy na pewno chcesz edytować wybraną pozycję?";
-            string captionQuestion = "Edycja";
+            string messageQuestion = "Are you sure you want to edit the selected item?";
+            string captionQuestion = "Edition";
             MessageBoxButton buttonQuestion = MessageBoxButton.YesNo;
             MessageBoxImage iconQuestion = MessageBoxImage.Question;
             MessageBoxResult result = MessageBox.Show(messageQuestion, captionQuestion, buttonQuestion, iconQuestion);
@@ -708,8 +709,8 @@ namespace CarDealerSQLite
             }
             else
             {
-                string messageEditionCancelled = "Edycja wycofana!";
-                string captionEditionCancelled = "Edycja";
+                string messageEditionCancelled = "Edition cancelled!";
+                string captionEditionCancelled = "Edition";
                 MessageBoxButton buttonEditionCancelled = MessageBoxButton.OK;
                 MessageBoxImage iconEditionCancelled = MessageBoxImage.Warning;
                 MessageBoxResult resultEditionCancelled = MessageBox.Show(messageEditionCancelled, captionEditionCancelled, buttonEditionCancelled, iconEditionCancelled);

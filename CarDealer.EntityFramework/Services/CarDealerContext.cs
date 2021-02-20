@@ -16,7 +16,6 @@ namespace CarDealer.EntityFramework.Services
            
         }
 
-
         public DbSet<Car> Cars { get; set; }
 
         public DbSet<User> Users { get; set; }

@@ -21,8 +21,7 @@ namespace CarDealer.EntityFramework.Models
         public Customer BookingUser { get; set; }
 
 
-  
-        public DateTime ProductionYear { get; set; }
+        public string ProductionYear { get; set; }
 
         public string Course { get; set; } //przebieg
 
@@ -31,10 +30,6 @@ namespace CarDealer.EntityFramework.Models
         public string RegistrationNumber { get; set; }
 
         public string Price { get; set; }
-
-        public bool Booking { get; set; } //czy zarezerwowany
-
-        public byte[] Image { get; set; }
 
     }
 }
