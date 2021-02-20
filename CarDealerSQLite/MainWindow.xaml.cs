@@ -35,6 +35,7 @@ namespace CarDealerSQLite
         Car newCar = new Car();
         Model newModel = new Model();
 
+        
         /// <summary>
         /// Konstruktor jednoargumentowy
         /// </summary>
