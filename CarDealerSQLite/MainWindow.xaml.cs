@@ -830,6 +830,9 @@ namespace CarDealerSQLite
 
         }
 
+        /// <summary>
+        /// Publiczna metoda do odswiezania
+        /// </summary>
         public void RefreashViews()
         {
             InitializeComponent();
