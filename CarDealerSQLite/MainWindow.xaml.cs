@@ -147,7 +147,7 @@ namespace CarDealerSQLite
 
         private void AddItem(object s, RoutedEventArgs e)
         {
-            if(newCustomer.Name != null && newCustomer.Surname != null && newCustomer.PhoneNumber != null && newCustomer.PostNumberr != null && newCustomer.City !=null && newCustomer.Email != null)
+            if(newCustomer.Name != null && newCustomer.Surname != null && newCustomer.PhoneNumber != null && newCustomer.PostNumberr != null && newCustomer.City !=null && newCustomer.Email != null && newCustomer.PhoneNumber.Length == 9 && newCustomer.PostNumberr.Length == 6 && newCustomer.PostNumberr.Contains('-') && newCustomer.Email.Contains('@') && newCustomer.Email.Contains('.'))
             {
                 _dbContext.Customers.Add(newCustomer);
                 _dbContext.SaveChanges();
