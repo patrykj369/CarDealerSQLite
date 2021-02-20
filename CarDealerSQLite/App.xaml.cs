@@ -30,6 +30,7 @@ namespace CarDealerSQLite
         {
             var mainWindow = serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
+
         }
 
 

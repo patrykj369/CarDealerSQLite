@@ -24,7 +24,7 @@ using System.Diagnostics;
 namespace CarDealerSQLite
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Głowne okno aplikacji, zawiera metody do dzialania w aplikacji
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -35,21 +35,6 @@ namespace CarDealerSQLite
         Car newCar = new Car();
         Model newModel = new Model();
 
-        private const int GWL_STYLE = -16;
-        private const int WS_SYSMENU = 0x80000;
-        
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            var hwnd = new WindowInteropHelper(this).Handle;
-            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
-        }
         public MainWindow(CarDealerContext dbContext)
         {
             _dbContext = dbContext;
@@ -162,21 +147,31 @@ namespace CarDealerSQLite
 
         private void AddItem(object s, RoutedEventArgs e)
         {
-            _dbContext.Customers.Add(newCustomer);
-            _dbContext.SaveChanges();
-            RefreashViews();
-
-            string messageAdd = "Add new Customer: \n" + "ID: "+ newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " +newCustomer.Surname;
-            string captionAdd = "Add new Customer";
-            MessageBoxButton buttonAdd = MessageBoxButton.OK;
-            MessageBoxImage iconAdd = MessageBoxImage.Information;
-            MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
-            clearTextBox(AddNewItemGrid);
-            newCustomer = new Customer();
-
-            AddNewItemGrid.DataContext = newCustomer;
-
-            RefreashViews();
+            if(newCustomer.Name != null && newCustomer.Surname != null && newCustomer.PhoneNumber != null && newCustomer.PostNumberr != null && newCustomer.City !=null && newCustomer.Email != null)
+            {
+                _dbContext.Customers.Add(newCustomer);
+                _dbContext.SaveChanges();
+                
+                string messageAdd = "Add new Customer: \n" + "ID: " + newCustomer.Id + "; Name: " + newCustomer.Name + "; Surname: " + newCustomer.Surname;
+                string captionAdd = "Add new Customer";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+                clearTextBox(AddNewItemGrid);
+                newCustomer = new Customer();
+                RefreashViews();
+                AddNewItemGrid.DataContext = newCustomer;
+            }
+            else
+            {
+                string messageAdd = "The required data has not been completed!";
+                string captionAdd = "Incorrect data!";
+                MessageBoxButton buttonAdd = MessageBoxButton.OK;
+                MessageBoxImage iconAdd = MessageBoxImage.Information;
+                MessageBoxResult result = MessageBox.Show(messageAdd, captionAdd, buttonAdd, iconAdd);
+            }
+            
+            
         }
 
         private void AddCar(object s, RoutedEventArgs e)
@@ -351,13 +346,72 @@ namespace CarDealerSQLite
             {
                 try
                 {
+                    var selectedCar2 = (s as FrameworkElement).DataContext.ToString();
+                    var carToBeDelated = new Car();
+
+                    //----id------
+                    char[] charsToTrim = { '{', 'I', 'd', '=', ' ' };
+                    string tmp = selectedCar2.Split(',')[0];
+                    int idAfterTrim = Int32.Parse(tmp.Trim(charsToTrim));
+                    carToBeDelated.Id = idAfterTrim;
+
+                    //----BrandId------
+                    char[] charsToTrim1 = { '{', 'B', 'r', 'a', 'n', 'd', 'I', 'D', '=', ' ' };
+                    string tmp1 = selectedCar2.Split(',')[2];
+                    int idAfterTrim1 = Int32.Parse(tmp1.Trim(charsToTrim1));
+                    carToBeDelated.BrandID = idAfterTrim1;
+                    carToBeDelated.Brand = _dbContext.Brands.Find(idAfterTrim1);
+
+                    //----ModelId------
+                    char[] charsToTrim2 = { '{', 'M', 'o', 'd', 'e', 'l', 'I', 'D', '=', ' ' };
+                    string tmp2 = selectedCar2.Split(',')[4];
+                    int idAfterTrim2 = Int32.Parse(tmp2.Trim(charsToTrim2));
+                    carToBeDelated.ModelID = idAfterTrim2;
+                    carToBeDelated.Model = _dbContext.Models.Find(idAfterTrim2);
+
+                    //----BookingUserId------
+                    char[] charsToTrim3 = { '{', 'B', 'o', 'k', 'i', 'n', 'g', 'U', 's', 'e', 'r', 'I', 'D', '=', ' ' };
+                    string tmp3 = selectedCar2.Split(',')[6];
+                    int idAfterTrim3 = Int32.Parse(tmp3.Trim(charsToTrim3));
+                    carToBeDelated.BookingUserID = idAfterTrim3;
+                    carToBeDelated.BookingUser = _dbContext.Customers.Find(idAfterTrim3);
+
+                    //------DATA-DO-ZROBIENIA------
+                    char[] charsToTrim8 = { '{', 'P', 'r', 'o', 'd', 'u', 't', 'i', 'n', 'Y', 'e', 'a', 'c', '=', ' ' };
+                    string tmp8 = selectedCar2.Split(',')[7];
+                    string productionYear = tmp8.Trim(charsToTrim8);
+                    carToBeDelated.ProductionYear = productionYear;
+
+                    //----Course------
+                    char[] charsToTrim4 = { '{', 'C', 'o', 'u', 'r', 's', 'e', '=', ' ' };
+                    string tmp4 = selectedCar2.Split(',')[8];
+                    string course = tmp4.Trim(charsToTrim4);
+                    carToBeDelated.Course = course;
+
+                    //----Capacity------
+                    char[] charsToTrim5 = { '{', 'C', 'a', 'p', 'c', 'i', 't', 'y', '=', ' ' };
+                    string tmp5 = selectedCar2.Split(',')[9];
+                    string capacity = tmp5.Trim(charsToTrim5);
+                    carToBeDelated.Capacity = capacity;
+
+                    //----Registration------
+                    char[] charsToTrim6 = { '{', 'R', 'e', 'g', 'i', 's', 't', 'r', 'a', 't', 'o', 'n', 'N', 'u', 'm', 'b', '=', ' ' };
+                    string tmp6 = selectedCar2.Split(',')[10];
+                    string registration = tmp6.Trim(charsToTrim6);
+                    carToBeDelated.RegistrationNumber = registration;
+
+                    //----Price------
+                    char[] charsToTrim7 = { '{', 'P', 'r', 'i', 'c', 'e', '=', ' ', '}' };
+                    string tmp7 = selectedCar2.Split(',')[11];
+                    string price = tmp7.Trim(charsToTrim7);
+                    carToBeDelated.Price = price;
+
                     //Usuwanie z bazy
-                    var carToBeDelated = (s as FrameworkElement).DataContext as Car;
                     _dbContext.Cars.Remove(carToBeDelated);
                     _dbContext.SaveChanges();
 
                     //wiadomosc wyswietlana na ekranie
-                    string messageBoxText = "Removed: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand + "; Model: " + carToBeDelated.Model;
+                    string messageBoxText = "Removed: \n" + "ID: " + carToBeDelated.Id + "; Brand: " + carToBeDelated.Brand.Name + "; Model: " + carToBeDelated.Model.Name;
                     string caption = "Removal";
                     MessageBoxButton buttonDeleted = MessageBoxButton.OK;
                     MessageBoxImage iconDeleted = MessageBoxImage.Information;
