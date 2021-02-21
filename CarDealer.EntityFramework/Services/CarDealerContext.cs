@@ -65,6 +65,14 @@ namespace CarDealer.EntityFramework.Services
             {
                 new Customer {Id = 1, Name = "Patryk", Surname = "Jablonski", Email ="patrykjablonski23@gmail.com", City="Mecina", PhoneNumber= "694926314", PostNumberr="34-654" },
                 new Customer {Id = 2, Name = "Marcin", Surname = "Najman", Email ="marcin.najman@gmail.com", City="Czestochowa", PhoneNumber= "666555444", PostNumberr="30-333" },
+                new Customer {Id = 3, Name = "Piotr", Surname = "Nowak", Email ="piotr.nowak@gmail.com", City="Warszawa", PhoneNumber= "111222333", PostNumberr="30-111" },
+                new Customer {Id = 4, Name = "Paweł", Surname = "Kowal", Email ="paweł.kowal@op.pl", City="Kraków", PhoneNumber= "333222111", PostNumberr="32-121" },
+                new Customer {Id = 5, Name = "Kamil", Surname = "Drąg", Email ="kamild@wp.pl", City="Nowy Sącz", PhoneNumber= "123456789", PostNumberr="35-121" },
+                new Customer {Id = 6, Name = "Damian", Surname = "Smoleń", Email ="damianek73@vp.pl", City="Kazimierz Dolny", PhoneNumber= "112112112", PostNumberr="38-543" },
+                new Customer {Id = 7, Name = "Mateusz", Surname = "Jeż", Email ="jezyk@gmail.com", City="Frombork", PhoneNumber= "998998998", PostNumberr="76-533" },
+                new Customer {Id = 8, Name = "Dawid", Surname = "Lachor", Email ="dawid_lachor@gmail.com", City="Rzeszów", PhoneNumber= "183327869", PostNumberr="54-533" },
+                new Customer {Id = 9, Name = "Piotr", Surname = "Zimoch", Email ="zimochp@gmail.com", City="Tarnawa", PhoneNumber= "778556434", PostNumberr="45-537" },
+                new Customer {Id = 10, Name = "Marek", Surname = "Suski", Email ="suski70m@gmail.com", City="Warszawa", PhoneNumber= "700000000", PostNumberr="70-000" },
             };
         }
         
