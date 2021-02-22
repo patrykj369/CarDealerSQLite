@@ -35,7 +35,7 @@ namespace CarDealerSQLite
         Car newCar = new Car();
         Model newModel = new Model();
 
-        
+
         /// <summary>
         /// Konstruktor jednoargumentowy
         /// </summary>
@@ -43,8 +43,9 @@ namespace CarDealerSQLite
         {
             _dbContext = dbContext;
             InitializeComponent();
-           
             RefreashViews();
+
+
 
             //----------------------------------------------------------------------//
 
@@ -52,6 +53,8 @@ namespace CarDealerSQLite
             AddNewBrandGrid.DataContext = newBrand;
             AddNewModelGrid.DataContext = newModel;
             AddNewCarGrid.DataContext = newCar;
+           
+            
         }
 
         /// <summary>
@@ -207,7 +210,7 @@ namespace CarDealerSQLite
             //------BookingUser--------------//
 
             var model_User = CarUser.SelectionBoxItem.ToString();
-            string id_User = model_User.Split(',')[0];
+            string id_User = model_Model.Split(',')[0];
             int idBeforeTrim_User = Int32.Parse(id_User.Trim(charsToTrim));
             Customer tmp_User = _dbContext.Customers.Find(idBeforeTrim_User);
             newCar.BookingUser = tmp_User;

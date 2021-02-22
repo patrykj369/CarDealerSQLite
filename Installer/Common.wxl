@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+
+  <String Id="Company">Patryk Jablonski</String>
+
+  <String Id="ProductNameFolder">CarDealer</String>
+  
+	<String Id="ProductName_x86">Car Dealer (32bit)</String>
+  <String Id="ProductName_x64">Car Dealer (64bit)</String>
+  
+  
+  <String Id="Language">1033</String>
+
+  <String Id="Description">This is a description</String>
+  <String Id="Comments">Some comment</String>
+  <String Id="Keywords">.net, cSharp, core</String>
+
+  <String Id="DowngradeErrorMessage">A newer version of CarDealer is already installed.</String>
+
+  
+</WixLocalization>

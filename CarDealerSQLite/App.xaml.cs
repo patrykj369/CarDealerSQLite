@@ -31,10 +31,11 @@ namespace CarDealerSQLite
 
         private void OnStartup(object s, StartupEventArgs e)
         {
-
             var mainWindow = serviceProvider.GetService<MainWindow>();
             mainWindow.Show();
 
+            WindowHello windowHello = new WindowHello();
+            windowHello.Show();
         }
 
 

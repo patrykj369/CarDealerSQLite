@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <ComponentGroup Id="ProductComponents">
+
+      <ComponentRef Id="MainAppShortcut" />
+
+    </ComponentGroup>
+   
+    <DirectoryRef Id="INSTALLFOLDER" FileSource="..\CarDealerSQLite\bin\Debug\netcoreapp3.1\win-$(var.Platform)">
+      <Component Id="MainAppShortcut" Guid="{F7E13F00-28D3-4F35-BAC3-A14BAC24CEB7}">
+        
+        <Shortcut Id="MainAppShortcut"
+                  Name="!(loc.ProductName_$(var.Platform))"
+                  Target="[INSTALLFOLDER]CarDealerSQLite.exe"
+                  Directory="InstallProgramMenuFolder"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="icon.ico"
+                  />
+          <RegistryValue Id="RegShortcutKey" Root="HKCU" Key="SOFTWARE\$(loc.ProductNameFolder)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes" />
+        
+        <RemoveFolder Id="RemoveStartMenu" Directory="InstallProgramMenuFolder" On="uninstall"/>
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>
