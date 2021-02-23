@@ -78,7 +78,14 @@ namespace CarDealerSQLite
                 window.Show();
                 this.Close();
             }
-        }    
-       
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow(dbContext);
+            window.CustomerTab.IsSelected = true;
+            window.Show();
+            this.Close();
+        }
     }
 }

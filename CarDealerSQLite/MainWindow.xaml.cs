@@ -820,7 +820,7 @@ namespace CarDealerSQLite
 
         }
 
-        private void Reload(object s, RoutedEventArgs e)
+        /*private void Reload(object s, RoutedEventArgs e)
         {
             InitializeComponent();
             GetCustomers();
@@ -833,7 +833,7 @@ namespace CarDealerSQLite
 
             //System.Windows.Application.Current.Shutdown();
 
-        }
+        }*/
 
         /// <summary>
         /// Publiczna metoda do odswiezania

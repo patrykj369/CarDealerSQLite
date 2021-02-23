@@ -7,11 +7,12 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         ShowInTaskbar="False"
-        Title="WindowHello" Width="900" Height="620" WindowStartupLocation="CenterScreen">
+        ResizeMode="NoResize"
+        Title="WindowHello" Width="900" Height="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="Background1.png"/>
+                <ImageBrush ImageSource="Background.png"/>
             </Grid.Background>
         </Grid>
 

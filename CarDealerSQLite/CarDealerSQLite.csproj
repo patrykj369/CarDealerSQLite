@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\Background1.png" />
+    <None Remove="Views\Background.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Views\Background1.png">
+    <Resource Include="Views\Background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

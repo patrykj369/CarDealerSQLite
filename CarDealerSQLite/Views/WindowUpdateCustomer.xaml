@@ -8,7 +8,7 @@
         Loaded="Window_Loaded"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
-        Title="WindowUpdateCustomer" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        Title="Car Dealer"  WindowState="Maximized" WindowStartupLocation="CenterScreen">
 
 
     <Grid>
@@ -76,7 +76,8 @@
 
                             <Label Grid.Row="8" Grid.Column="0" Content=""/>
 
-                            <Button Grid.Row="9" Content="Update" Margin="112,12,112,13" Grid.ColumnSpan="2" Click="UpdateItem"/>
+                            <Button Grid.Row="9" Grid.Column="1" Margin="10" Content="Update" Click="UpdateItem"/>
+                            <Button Grid.Row="9" Grid.Column="0" Margin="10" Content="Exit"  Click="Exit"/>
                         </Grid>
                     </GroupBox>
                 </StackPanel>
